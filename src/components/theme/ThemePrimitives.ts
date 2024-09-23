@@ -5,6 +5,7 @@ declare module '@mui/material/Paper' {
     highlighted: true;
   }
 }
+
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
     50: string;
@@ -26,9 +27,9 @@ declare module '@mui/material/styles/createPalette' {
   }
 }
 
-const defaultTheme = createTheme();
+const customTheme = createTheme();
 
-const customShadows: Shadows = [...defaultTheme.shadows];
+const customShadows: Shadows = [...customTheme.shadows];
 
 export const brand = {
   50: 'hsl(210, 100%, 95%)',
@@ -185,49 +186,49 @@ export const getDesignTokens = (mode: PaletteMode) => {
     typography: {
       fontFamily: ['"Inter", "sans-serif"'].join(','),
       h1: {
-        fontSize: defaultTheme.typography.pxToRem(48),
+        fontSize: customTheme.typography.pxToRem(48),
         fontWeight: 600,
         lineHeight: 1.2,
         letterSpacing: -0.5,
       },
       h2: {
-        fontSize: defaultTheme.typography.pxToRem(36),
+        fontSize: customTheme.typography.pxToRem(36),
         fontWeight: 600,
         lineHeight: 1.2,
       },
       h3: {
-        fontSize: defaultTheme.typography.pxToRem(30),
+        fontSize: customTheme.typography.pxToRem(30),
         lineHeight: 1.2,
       },
       h4: {
-        fontSize: defaultTheme.typography.pxToRem(24),
+        fontSize: customTheme.typography.pxToRem(24),
         fontWeight: 600,
         lineHeight: 1.5,
       },
       h5: {
-        fontSize: defaultTheme.typography.pxToRem(20),
+        fontSize: customTheme.typography.pxToRem(20),
         fontWeight: 600,
       },
       h6: {
-        fontSize: defaultTheme.typography.pxToRem(18),
+        fontSize: customTheme.typography.pxToRem(18),
         fontWeight: 600,
       },
       subtitle1: {
-        fontSize: defaultTheme.typography.pxToRem(18),
+        fontSize: customTheme.typography.pxToRem(18),
       },
       subtitle2: {
-        fontSize: defaultTheme.typography.pxToRem(14),
+        fontSize: customTheme.typography.pxToRem(14),
         fontWeight: 500,
       },
       body1: {
-        fontSize: defaultTheme.typography.pxToRem(14),
+        fontSize: customTheme.typography.pxToRem(14),
       },
       body2: {
-        fontSize: defaultTheme.typography.pxToRem(14),
+        fontSize: customTheme.typography.pxToRem(14),
         fontWeight: 400,
       },
       caption: {
-        fontSize: defaultTheme.typography.pxToRem(12),
+        fontSize: customTheme.typography.pxToRem(12),
         fontWeight: 400,
       },
     },
@@ -343,49 +344,49 @@ export const colorSchemes = {
 export const typography = {
   fontFamily: ['"Inter", "sans-serif"'].join(','),
   h1: {
-    fontSize: defaultTheme.typography.pxToRem(48),
+    fontSize: customTheme.typography.pxToRem(48),
     fontWeight: 600,
     lineHeight: 1.2,
     letterSpacing: -0.5,
   },
   h2: {
-    fontSize: defaultTheme.typography.pxToRem(36),
+    fontSize: customTheme.typography.pxToRem(36),
     fontWeight: 600,
     lineHeight: 1.2,
   },
   h3: {
-    fontSize: defaultTheme.typography.pxToRem(30),
+    fontSize: customTheme.typography.pxToRem(30),
     lineHeight: 1.2,
   },
   h4: {
-    fontSize: defaultTheme.typography.pxToRem(24),
+    fontSize: customTheme.typography.pxToRem(24),
     fontWeight: 600,
     lineHeight: 1.5,
   },
   h5: {
-    fontSize: defaultTheme.typography.pxToRem(20),
+    fontSize: customTheme.typography.pxToRem(20),
     fontWeight: 600,
   },
   h6: {
-    fontSize: defaultTheme.typography.pxToRem(18),
+    fontSize: customTheme.typography.pxToRem(18),
     fontWeight: 600,
   },
   subtitle1: {
-    fontSize: defaultTheme.typography.pxToRem(18),
+    fontSize: customTheme.typography.pxToRem(18),
   },
   subtitle2: {
-    fontSize: defaultTheme.typography.pxToRem(14),
+    fontSize: customTheme.typography.pxToRem(14),
     fontWeight: 500,
   },
   body1: {
-    fontSize: defaultTheme.typography.pxToRem(14),
+    fontSize: customTheme.typography.pxToRem(14),
   },
   body2: {
-    fontSize: defaultTheme.typography.pxToRem(14),
+    fontSize: customTheme.typography.pxToRem(14),
     fontWeight: 400,
   },
   caption: {
-    fontSize: defaultTheme.typography.pxToRem(12),
+    fontSize: customTheme.typography.pxToRem(12),
     fontWeight: 400,
   },
 };
@@ -395,5 +396,5 @@ export const shape = {
 };
 
 // @ts-ignore
-const defaultShadows: Shadows = ['var(--mui-palette-baseShadow)', ...defaultTheme.shadows.slice(1)];
+const defaultShadows: Shadows = ['var(--mui-palette-baseShadow)', ...customTheme.shadows.slice(1)];
 export const shadows = defaultShadows;
