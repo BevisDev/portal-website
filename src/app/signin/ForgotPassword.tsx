@@ -24,6 +24,10 @@ export default function ForgotPassword({
         component: "form",
         onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
           event.preventDefault();
+          const formData = new FormData(event.currentTarget);
+          const formJson = Object.fromEntries((formData as any).entries());
+          const email = formJson.email;
+          console.log("email:", email);
           handleClose();
         },
       }}
