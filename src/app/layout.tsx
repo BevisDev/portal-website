@@ -1,11 +1,28 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+// import { Roboto } from "next/font/google";
+import localFont from "next/font/local";
 import "../styles/globals.css";
 
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700", "900"],
-  display: "swap",
+// const roboto = Roboto({
+//   subsets: ["latin"],
+//   weight: ["300", "400", "500", "700", "900"],
+//   display: "swap",
+// });
+
+const lora = localFont({
+  src: [
+    {
+      path: "./fonts/Lora-VariableFont_wght.ttf",
+      weight: "normal",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Lora-Italic-VariableFont_wght.ttf",
+      weight: "normal",
+      style: "italic",
+    },
+  ],
+  variable: "--font-lora", 
 });
 
 export const metadata: Metadata = {
@@ -23,7 +40,7 @@ export default function RootLayout({
       <head>
         {/* <link rel="shortcut icon" href="/favicon.png" type="image/png" /> */}
       </head>
-      <body className={roboto.className}>{children}</body>
+      <body className={lora.className}>{children}</body>
     </html>
   );
 }
