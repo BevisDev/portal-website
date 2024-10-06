@@ -22,7 +22,7 @@ const lora = localFont({
       style: "italic",
     },
   ],
-  variable: "--font-lora", 
+  variable: "--font-lora",
 });
 
 export const metadata: Metadata = {
@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* <link rel="shortcut icon" href="/favicon.png" type="image/png" /> */}
+        <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={lora.className}>{children}</body>
     </html>
