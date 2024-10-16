@@ -8,12 +8,12 @@ export default function Copyright() {
       variant="body2"
       align="center"
       sx={{
-        color: "text.secondary",
+        color: "white",
       }}
     >
       {"Copyright © "}
-      <MuiLink color="inherit" href="https://mui.com/">
-        Your Website
+      <MuiLink color="inherit" href="https://github.com/BevisDev" className="text-[#16f2b3]">
+        BevisDev Website
       </MuiLink>{" "}
       {new Date().getFullYear()}.
     </Typography>
