@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 // import { Roboto } from "next/font/google";
 import localFont from "next/font/local";
-import "../styles/globals.css";
+import "../styles/globals.scss";
 
 // const roboto = Roboto({
 //   subsets: ["latin"],
@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={lora.className}>{children}</body>
     </html>

@@ -32,7 +32,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/helper/animation-lottie.jsx"  ],
   "exclude": [
     "node_modules"
   ]
