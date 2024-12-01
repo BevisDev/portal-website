@@ -4,7 +4,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: rgb(42, 53, 71);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,11 +17,11 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-size: 1rem;
+  font-size: 14px;
   font-family: "Poppins", sans-serif;
   font-weight: normal;
   line-height: 1;
-  overflow: hidden;
+  overflow: auto;
   margin: 0;
   padding: 0;
 }

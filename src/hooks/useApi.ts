@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { toMilliseconds } from "@/utils/DateTimeUtils";

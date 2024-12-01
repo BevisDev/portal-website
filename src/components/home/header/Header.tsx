@@ -45,16 +45,11 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 // }));
 
 interface HeaderProps {
-  sidebarWidth: number;
   sidebarOpen: boolean;
   setSidebarOpen: (arg: boolean) => void;
 }
 
-export default function Header({
-  sidebarWidth,
-  sidebarOpen,
-  setSidebarOpen,
-}: HeaderProps) {
+export default function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {
   const handleSidebarOpen = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -64,10 +59,9 @@ export default function Header({
       <AppBar
         position="static"
         sx={{
-          width: sidebarOpen ? `calc(100% - ${sidebarWidth}px)` : "100%",
-          marginLeft: sidebarOpen ? `${sidebarWidth}px` : 0,
-          transition: "width 0.3s, margin-left 0.3s",
+          boxShadow: "none",
         }}
+        color="transparent"
       >
         <Toolbar>
           {/* <!-- ===== Open/Close Sidebar ===== --> */}

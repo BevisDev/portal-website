@@ -1,28 +1,34 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export const middleware = (request: NextRequest) => {
+export function middleware(request: NextRequest) {
   const cookies = request.cookies;
   const url = request.nextUrl.clone();
 
-  const authToken = cookies.get("authToken");
-
-  if (!authToken && url.pathname !== "/signin") {
-    url.pathname = "/signin";
-    return NextResponse.redirect(url);
+  // ignore static assets
+  if (
+    url.pathname.startsWith("/_next") ||
+    url.pathname.startsWith("/favicon.ico") ||
+    url.pathname.startsWith("/public") ||
+    /\.(png|jpg|jpeg|svg|webp|ico|woff2|css|js|map)$/.test(url.pathname)
+  ) {
+    return NextResponse.next();
   }
 
-  if (authToken && url.pathname === "/signin") {
+  // handle request
+  // Enter "/" or "/abc.."
+  // if no auth Token => redirect /signin
+  // middlewares will check again route redirect /signin
+  const authToken = cookies.get("authToken");
+  if (authToken && url.pathname.startsWith("/signin")) {
     url.pathname = "/";
     return NextResponse.redirect(url);
   }
 
+  // if no auth Token and url.startWith /signin => next();
+  // if don't have condition startsWith /signin => error redirect too many
+  if (!authToken && !url.pathname.startsWith("/signin")) {
+    url.pathname = "/signin";
+    return NextResponse.redirect(url);
+  }
   return NextResponse.next();
-};
-
-// ignore router
-export const config = {
-  matcher: [
-    "/((?!.next/static_next/static|_next/image|sitemap.xml|robots.txt|favicon.ico|images|fonts|.*\\.map).*)",
-  ],
-};
+}

@@ -4,7 +4,7 @@ import { styled } from "@mui/system";
 interface ButtonProps {
   color?: "primary" | "secondary" | "success" | "info" | "warning" | "error";
   type?: "submit" | "button" | "reset";
-  icon?: React.ReactNode;
+  icon?: React.JSX.Element;
   label?: string;
   disabled?: boolean;
   sx?: object;
@@ -33,7 +33,11 @@ export default function BaseButton({
       variant="contained"
       onClick={onClick}
       disabled={disabled}
-      sx={{ ...sx }}
+      sx={{
+        fontSize: "14px",
+        color: "#fff",
+        ...sx,
+      }}
       startIcon={icon}
     >
       {label}

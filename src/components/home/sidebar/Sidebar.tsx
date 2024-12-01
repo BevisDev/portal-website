@@ -1,17 +1,14 @@
 import {
   Box,
-  Divider,
   Drawer,
   List,
-  ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { boolean } from "yup";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface SidebarProps {
   sidebarWidth: number;
@@ -26,10 +23,17 @@ export default function Sidebar({
 }: SidebarProps) {
   const [openItems, setOpenItems] = useState<{ [key: number]: boolean }>({});
   const drawerRef = useRef<HTMLDivElement | null>(null);
-  const toggleDrawer = (isOpen: boolean) => {
-    setSidebarOpen(isOpen);
-  };
+  const router = useRouter();
 
+  // handle togger drawer
+  const toggleDrawer = useCallback(
+    (isOpen: boolean) => {
+      setSidebarOpen(isOpen);
+    },
+    [setSidebarOpen]
+  );
+
+  // handle open menu items
   const handleOpenItems = (id: number) => {
     setOpenItems((prevState) => ({
       ...prevState,
@@ -55,7 +59,7 @@ export default function Sidebar({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [sidebarOpen]);
+  }, [sidebarOpen, toggleDrawer]);
 
   return (
     <Box component="section">
@@ -69,65 +73,50 @@ export default function Sidebar({
           flexShrink: 0,
           "& .MuiDrawer-paper": {
             width: sidebarWidth,
-            boxSizing: "border-box",
+            padding: "1rem",
           },
-          bgcolor: "rgb(102, 157, 246)",
         }}
         ref={drawerRef}
       >
         {/* <!-- ===== Menu ===== --> */}
-        <List
-          disablePadding
-          sx={{
-            bgcolor: "#f7f5f2",
-          }}
-        >
-          {/* <!-- ===== Icon Website ===== --> */}
-          <ListItemButton component="a" href="#customized-list">
-            <ListItemIcon sx={{ fontSize: 20 }}>🔥</ListItemIcon>
+        <List disablePadding>
+          <ListItemButton onClick={() => router.push("/")}>
+            <ListItemIcon>
+              <Image
+                alt="logo"
+                src={"/images/logo/dark-logo.svg"}
+                width={200}
+                height={100}
+              />
+            </ListItemIcon>
+          </ListItemButton>
+
+          <ListItemButton
+            onClick={() => router.push("/page-management")}
+            sx={{
+              "&:hover": {
+                backgroundColor: "#1976d2", // Màu nền khi hover
+              },
+              backgroundColor: "#f5f5f5", // Màu nền mặc định
+              color: "inherit",
+              borderRadius: "8px", // Bo tròn góc
+            }}
+          >
             <ListItemText
-              sx={{ my: 0 }}
-              primary="Firebash"
-              primaryTypographyProps={{
-                fontSize: 20,
-                fontWeight: "500",
-                letterSpacing: 0,
-                color: "black",
+              primary="Page Mangement"
+              sx={{
+                "&.MuiListItemText-root": {
+                  color: "#000",
+                },
+                "&:hover": {
+                  color: "#fff",
+                },
+                color: "black !important",
               }}
             />
           </ListItemButton>
-
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText
-                  sx={{
-                    color: "black",
-                  }}
-                  primary={text}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
         </List>
-
-        <Divider />
-
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+        {/* <!-- ===== End Menu ===== --> */}
       </Drawer>
     </Box>
   );
