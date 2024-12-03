@@ -6,13 +6,13 @@ import { ThemeProvider } from "@mui/material/styles";
 import { Box, Container, CssBaseline, Paper, Typography } from "@mui/material";
 import theme from "./../components/theme/theme";
 import { ToastContainer } from "react-toastify";
-import { useEffect, useState } from "react";
-import Loader from "@/components/loader/Loader";
+import { useState } from "react";
 import { Metadata } from "next";
 import Header from "@/components/home/header/Header";
 import Footer from "@/components/home/footer/Footer";
 import Sidebar from "@/components/home/sidebar/Sidebar";
-import { usePathname, redirect } from "next/navigation";
+import { usePathname } from "next/navigation";
+import ScrollToTop from "@/components/helper/ScrollToTop";
 
 export const homeMedata: Metadata = {
   title: "Portal Website by BevisDev - Next.js 14",
@@ -121,6 +121,11 @@ const RootLayout: React.FC<RootlayoutProps> = ({ children }) => {
               </Box>
             </Paper>
             {/* <!-- ===== End Main ===== --> */}
+
+            {/* <!-- ===== Start ScrollToTop ===== --> */}
+            <ScrollToTop />
+            {/* <!-- ===== End ScrollToTop ===== --> */}
+
 
             {/* <!-- ===== Start Footer ===== --> */}
             <Footer />

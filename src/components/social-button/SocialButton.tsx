@@ -1,5 +1,4 @@
-import { Box } from "@mui/material";
-import BaseButton from "../base/BaseButton";
+import { Box, Button } from "@mui/material";
 import GoogleIcon from "./icons/GoogleIcon";
 import FacebookIcon from "./icons/FacebookIcon";
 import GithubIcon from "./icons/GithubIcon";
@@ -15,31 +14,30 @@ export default function SocialButton() {
         gap: 2,
       }}
     >
-      <BaseButton
-        icon={<FacebookIcon />}
+      <Button
         sx={{
           bgcolor: "#1877F2",
-          color: "#fff",
           borderRadius: "50px",
-        }}
-      />
-      <BaseButton
-        icon={<GoogleIcon />}
+        }}>
+        <FacebookIcon />
+      </Button>
+
+      <Button
         sx={{
           bgcolor: "#fff",
-          color: "#000",
-          border: "1px solid #ddd",
           borderRadius: "50px",
-        }}
-      />
-      <BaseButton
-        icon={<GithubIcon />}
+        }}>
+        <GoogleIcon />
+      </Button>
+
+      <Button
         sx={{
           bgcolor: "#fff",
-          color: "#000",
           borderRadius: "50px",
-        }}
-      />
+        }}>
+        <GithubIcon />
+      </Button>
+
     </Box>
   );
 }

@@ -11,9 +11,9 @@ import {
   Link,
   FormControlLabel,
   Checkbox,
+  Button,
 } from "@mui/material";
 import SocialButton from "@/components/social-button/SocialButton";
-import BaseButton from "@/components/base/BaseButton";
 import ForgotPassword from "@/app/signin/ForgotPassword";
 // import { useApi } from "@/hooks/useApi";
 import { useRouter } from "next/navigation";
@@ -154,12 +154,13 @@ const SignIn = () => {
 
         <SocialButton />
 
-        <BaseButton
-          label={formik.isSubmitting ? "Signing..." : "SIGN IN"}
+        <Button
+          variant="contained"
           type="submit"
           sx={{ mt: 2 }}
-          disabled={formik.isSubmitting}
-        />
+          disabled={formik.isSubmitting}>
+          {formik.isSubmitting ? "Signing..." : "SIGN IN"}
+        </Button>
 
         <Box
           sx={{
