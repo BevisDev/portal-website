@@ -14,7 +14,7 @@ import {
   Button,
 } from "@mui/material";
 import SocialButton from "@/components/social-button/SocialButton";
-import ForgotPassword from "@/app/signin/ForgotPassword";
+import ForgotPassword from "@/app/(auth)/signin/ForgotPassword";
 // import { useApi } from "@/hooks/useApi";
 import { useRouter } from "next/navigation";
 import { Metadata } from "next";
@@ -158,7 +158,8 @@ const SignIn = () => {
           variant="contained"
           type="submit"
           sx={{ mt: 2 }}
-          disabled={formik.isSubmitting}>
+          disabled={formik.isSubmitting}
+        >
           {formik.isSubmitting ? "Signing..." : "SIGN IN"}
         </Button>
 

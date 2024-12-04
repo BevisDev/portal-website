@@ -1,14 +1,6 @@
-import {
-  Box,
-  Drawer,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Box, Drawer, List } from "@mui/material";
+import { useCallback, useEffect, useRef } from "react";
+import SidebarItems from "./SidebarItems";
 
 interface SidebarProps {
   sidebarWidth: number;
@@ -21,9 +13,7 @@ export default function Sidebar({
   sidebarOpen,
   setSidebarOpen,
 }: SidebarProps) {
-  const [openItems, setOpenItems] = useState<{ [key: number]: boolean }>({});
   const drawerRef = useRef<HTMLDivElement | null>(null);
-  const router = useRouter();
 
   // handle togger drawer
   const toggleDrawer = useCallback(
@@ -32,14 +22,6 @@ export default function Sidebar({
     },
     [setSidebarOpen]
   );
-
-  // handle open menu items
-  const handleOpenItems = (id: number) => {
-    setOpenItems((prevState) => ({
-      ...prevState,
-      [id]: !prevState[id],
-    }));
-  };
 
   // handle click outside to close the drawer
   useEffect(() => {
@@ -79,42 +61,8 @@ export default function Sidebar({
         ref={drawerRef}
       >
         {/* <!-- ===== Menu ===== --> */}
-        <List disablePadding>
-          <ListItemButton onClick={() => router.push("/")}>
-            <ListItemIcon>
-              <Image
-                alt="logo"
-                src={"/images/logo/dark-logo.svg"}
-                width={200}
-                height={100}
-              />
-            </ListItemIcon>
-          </ListItemButton>
-
-          <ListItemButton
-            onClick={() => router.push("/page-management")}
-            sx={{
-              "&:hover": {
-                backgroundColor: "#1976d2", // Màu nền khi hover
-              },
-              backgroundColor: "#f5f5f5", // Màu nền mặc định
-              color: "inherit",
-              borderRadius: "8px", // Bo tròn góc
-            }}
-          >
-            <ListItemText
-              primary="Page Mangement"
-              sx={{
-                "&.MuiListItemText-root": {
-                  color: "#000",
-                },
-                "&:hover": {
-                  color: "#fff",
-                },
-                color: "black !important",
-              }}
-            />
-          </ListItemButton>
+        <List component="nav" disablePadding>
+          <SidebarItems />
         </List>
         {/* <!-- ===== End Menu ===== --> */}
       </Drawer>
