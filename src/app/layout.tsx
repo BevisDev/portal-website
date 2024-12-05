@@ -1,5 +1,7 @@
 "use client";
 import "react-toastify/dist/ReactToastify.css";
+import "@/styles/font.css";
+import "@/styles/globals.css"
 import { ThemeProvider } from "@mui/material/styles";
 import { Box, CssBaseline, Paper } from "@mui/material";
 import { ToastContainer } from "react-toastify";
@@ -30,75 +32,85 @@ const RootLayout: React.FC<RootlayoutProps> = ({ children }) => {
   // handle render routers have layout
   if (RouteLayout.includes(pathname)) {
     return (
-      <>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Box component="main">{children}</Box>
-        </ThemeProvider>
-      </>
+      <html lang="en">
+        <head>
+          <link rel="icon" href="/favicon.ico" />
+        </head>
+        <body>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Box component="main">{children}</Box>
+          </ThemeProvider>
+        </body>
+      </html>
     );
   }
 
   // handle render children page
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <ToastContainer autoClose={3000} theme="colored" draggable />
-        <Box
-          component="section"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            minHeight: "100vh",
-          }}
-        >
-          {/* <!-- ===== Start Sidebar ===== --> */}
-          <Sidebar
-            sidebarWidth={sidebarWidth}
-            sidebarOpen={sidebarOpen}
-            setSidebarOpen={setIsSidebarOpen}
-          />
-
-          <Paper
-            elevation={3}
+    <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
+      <body>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <ToastContainer autoClose={3000} theme="colored" draggable />
+          <Box
+            component="section"
             style={{
-              margin: `${paperWidth}px`,
-              flex: 1,
-              borderRadius: "12px",
-              marginLeft: sidebarOpen
-                ? `${sidebarWidth + 12}px`
-                : `${paperWidth}px`,
-              transition: "width 0.3s, margin-left 0.3s ease",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              minHeight: "100vh",
             }}
           >
-            {/* <!-- ===== Header ===== --> */}
-            <Header
+            {/* <!-- ===== Start Sidebar ===== --> */}
+            <Sidebar
+              sidebarWidth={sidebarWidth}
               sidebarOpen={sidebarOpen}
               setSidebarOpen={setIsSidebarOpen}
             />
 
-            {/* <!-- ===== Main ===== --> */}
-            <Box
-              component="main"
-              sx={{
-                padding: "2rem 3rem",
+            <Paper
+              elevation={3}
+              style={{
+                margin: `${paperWidth}px`,
+                flex: 1,
+                borderRadius: "12px",
+                marginLeft: sidebarOpen
+                  ? `${sidebarWidth + 12}px`
+                  : `${paperWidth}px`,
+                transition: "width 0.3s, margin-left 0.3s ease",
               }}
             >
-              <TypographyLabel pathname={pathname} />
-              {children}
-            </Box>
-          </Paper>
+              {/* <!-- ===== Header ===== --> */}
+              <Header
+                sidebarOpen={sidebarOpen}
+                setSidebarOpen={setIsSidebarOpen}
+              />
 
-          {/* <!-- ===== ScrollToTop ===== --> */}
-          <ScrollToTop />
+              {/* <!-- ===== Main ===== --> */}
+              <Box
+                component="main"
+                sx={{
+                  padding: "2rem 3rem",
+                }}
+              >
+                <TypographyLabel pathname={pathname} />
+                {children}
+              </Box>
+            </Paper>
 
-          {/* <!-- ===== Footer ===== --> */}
-          <Footer />
-        </Box>
-      </ThemeProvider>
-    </>
+            {/* <!-- ===== ScrollToTop ===== --> */}
+            <ScrollToTop />
+
+            {/* <!-- ===== Footer ===== --> */}
+            <Footer />
+          </Box>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 };
 
