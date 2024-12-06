@@ -1,8 +1,8 @@
 import { AppBar, Badge, Box, IconButton, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
-import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import React from "react";
 
 // const Search = styled("div")(({ theme }) => ({
 //   position: "relative",
@@ -49,7 +49,7 @@ interface HeaderProps {
   setSidebarOpen: (arg: boolean) => void;
 }
 
-export default function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {
+const Header: React.FC<HeaderProps> = ({ sidebarOpen, setSidebarOpen }) => {
   const handleSidebarOpen = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -103,4 +103,6 @@ export default function Header({ sidebarOpen, setSidebarOpen }: HeaderProps) {
       </AppBar>
     </Box>
   );
-}
+};
+
+export default Header;

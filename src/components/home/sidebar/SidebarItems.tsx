@@ -1,4 +1,3 @@
-import { Menu } from "@/routes/Menu";
 import {
   Box,
   Collapse,
@@ -9,6 +8,7 @@ import {
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { HomeRoute } from "@/routes/HomeRoute";
 
 export default function SidebarItems() {
   const router = useRouter();
@@ -27,7 +27,7 @@ export default function SidebarItems() {
 
   return (
     <Box>
-      {Menu.filter((item) => item.visible).map((item, index) => (
+      {HomeRoute.filter((item) => item.visible).map((item, index) => (
         <React.Fragment key={index}>
           <ListItemButton
             onClick={() => {

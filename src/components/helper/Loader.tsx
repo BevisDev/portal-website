@@ -11,7 +11,6 @@ export default function Loader() {
     <Box
       sx={{
         display: "flex",
-        height: "100vh",
         alignItems: "center",
         justifyContent: "center",
         margin: "auto",

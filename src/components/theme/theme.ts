@@ -45,6 +45,15 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiDialog: {
+      styleOverrides: {
+        root: {
+          "& .MuiDialog-root": {
+            fontFamily: "'Poppins', sans-serif",
+          },
+        },
+      },
+    },
     MuiTextField: {
       styleOverrides: {
         root: {

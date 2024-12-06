@@ -1,10 +1,18 @@
-import { Box } from "@mui/material";
+import HomeLayout from "@/components/home/HomeLayout";
+import { Box, TextField } from "@mui/material";
 
 const Home = () => {
   return (
-    <Box component="section" style={{ height: "1600px" }}>
-      Home Page
-    </Box>
+    <HomeLayout>
+      <Box
+        component="section"
+        style={{
+          height: "1600px",
+        }}
+      >
+        Home Page
+      </Box>
+    </HomeLayout>
   );
 };
 

@@ -19,6 +19,7 @@ import ForgotPassword from "@/app/(auth)/signin/ForgotPassword";
 // import { useApi } from "@/hooks/useApi";
 import { useRouter } from "next/navigation";
 import { Metadata } from "next";
+import SignUp from "./SignUp";
 
 export const signInMeta: Metadata = {
   title: "Sign In | Portal Website by BevisDev",
@@ -39,7 +40,8 @@ const SignIn = () => {
   //   url: "/signin-config",
   //   method: "GET",
   // });
-  const [open, setOpen] = useState(false);
+  const [openForgotPwd, setOpenForgotPwd] = useState<boolean>(false);
+  const [openSignUp, setOpenSignUp] = useState<boolean>(false);
   const router = useRouter();
   const formik = useFormik({
     initialValues: { username: "", password: "" },
@@ -51,12 +53,12 @@ const SignIn = () => {
     },
   });
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
+  const toggleDialog = (isOpen: boolean, isSignUp: boolean = false) => {
+    if (isOpen) {
+      isSignUp ? setOpenSignUp(true) : setOpenForgotPwd(true);
+    } else {
+      isSignUp ? setOpenSignUp(false) : setOpenForgotPwd(false);
+    }
   };
 
   return (
@@ -94,6 +96,7 @@ const SignIn = () => {
               textAlign: "center",
               mb: 2,
               fontSize: "2.5rem",
+              color: "#fff",
             }}
           >
             Sign in
@@ -116,10 +119,21 @@ const SignIn = () => {
                 label="USERNAME"
                 variant="outlined"
                 value={formik.values.username}
-                error={formik.touched.username && Boolean(formik.errors.username)}
+                error={
+                  formik.touched.username && Boolean(formik.errors.username)
+                }
                 helperText={formik.touched.username && formik.errors.username}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                sx={{
+                  "& .MuiInputBase-input": {
+                    color: "#fff",
+                  },
+                  "& .MuiFormLabel-root": {
+                    color: "#fff",
+                    userSelect: "none",
+                  },
+                }}
               />
             </FormControl>
 
@@ -132,10 +146,20 @@ const SignIn = () => {
                 placeholder="••••••"
                 variant="outlined"
                 value={formik.values.password}
-                error={formik.touched.password && Boolean(formik.errors.password)}
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
                 helperText={formik.touched.password && formik.errors.password}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                sx={{
+                  "& .MuiInputBase-input": {
+                    color: "#fff",
+                  },
+                  "& .MuiFormLabel-root": {
+                    color: "#fff",
+                  },
+                }}
               />
             </FormControl>
 
@@ -186,6 +210,7 @@ const SignIn = () => {
                 justifyContent: "center",
               }}
             >
+              {/* Forgot password */}
               <Box>
                 <Link
                   component="button"
@@ -197,32 +222,44 @@ const SignIn = () => {
                       textDecoration: "underline",
                     },
                   }}
-                  onClick={handleClickOpen}
+                  onClick={() => toggleDialog(true)}
                 >
                   Can&apos;t sign in?
                 </Link>
-                <ForgotPassword open={open} handleClose={handleClose} />
+                <ForgotPassword
+                  open={openForgotPwd}
+                  handleClose={() => toggleDialog(false)}
+                />
               </Box>
-              <Typography
-                variant="body1"
-                sx={{
-                  textAlign: "center",
-                  mt: 2,
-                  color: "#fff",
-                  fontSize: "14px",
-                }}
-              >
-                Don&apos;t have an account? {""}
-                <Link
-                  href="/signup"
+
+              {/* SignUp */}
+              <Box>
+                <Typography
                   variant="body1"
                   sx={{
+                    textAlign: "center",
+                    mt: 2,
+                    color: "#fff",
                     fontSize: "14px",
                   }}
                 >
-                  Sign up
-                </Link>
-              </Typography>
+                  Don&apos;t have an account? {""}
+                  <Link
+                    component="button"
+                    variant="body2"
+                    sx={{
+                      fontSize: "14px",
+                    }}
+                    onClick={() => toggleDialog(true, true)}
+                  >
+                    Sign up
+                  </Link>
+                </Typography>
+                <SignUp
+                  open={openSignUp}
+                  handleCancle={() => toggleDialog(false, true)}
+                />
+              </Box>
             </Box>
           </Box>
         </Card>
