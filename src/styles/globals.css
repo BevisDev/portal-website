@@ -17,10 +17,10 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-size: 14px;
+  font-size: 0.875rem;
   font-family: "Poppins", sans-serif;
   font-weight: normal;
-  line-height: 1;
+  line-height: 1.75;
   overflow: auto;
   margin: 0;
   padding: 0;

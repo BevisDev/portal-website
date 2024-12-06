@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
-import { toMilliseconds } from "@/utils/DateTimeUtils";
+import { toMilliseconds } from "@/utils/datetime-utils";
 
 interface ApiRequest {
   url: string;

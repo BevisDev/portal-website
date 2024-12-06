@@ -1,17 +1,17 @@
 import { Dashboard, PeopleAltRounded, ShoppingCart } from "@mui/icons-material";
-import React, { ReactElement } from "react";
+import React from "react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
 
-interface MenuProps {
+interface HomeRouteProps {
   path?: string; // if has chilrent, parent don't need path
   visible: boolean;
   label: string;
-  icon?: ReactElement;
-  children?: MenuProps[];
+  icon?: React.JSX.Element;
+  children?: HomeRouteProps[];
 }
 
-const Menu: MenuProps[] = [
+const HomeRoute: HomeRouteProps[] = [
   {
     path: "/test",
     visible: true,
@@ -64,7 +64,10 @@ const Menu: MenuProps[] = [
   },
 ];
 
-const getLabel = (menuItem: MenuProps[], pathname: string): string | null => {
+const getLabel = (
+  menuItem: HomeRouteProps[],
+  pathname: string
+): string | null => {
   for (const item of menuItem) {
     if (item.path === pathname) {
       return item.label;
@@ -82,7 +85,7 @@ const getLabel = (menuItem: MenuProps[], pathname: string): string | null => {
 };
 
 const TypographyLabel: React.FC<{ pathname: string }> = ({ pathname }) => {
-  const label = getLabel(Menu, pathname);
+  const label = getLabel(HomeRoute, pathname);
   return (
     <Typography
       variant="h2"
@@ -97,5 +100,5 @@ const TypographyLabel: React.FC<{ pathname: string }> = ({ pathname }) => {
   );
 };
 
-export { Menu, getLabel };
+export { HomeRoute, getLabel };
 export default TypographyLabel;

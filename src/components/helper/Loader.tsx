@@ -6,12 +6,11 @@ export const loadingMeta: Metadata = {
   description: "Welcome to my Portal Website",
 };
 
-export default function Loader() {
+const Loader = () => {
   return (
     <Box
       sx={{
         display: "flex",
-        height: "100vh",
         alignItems: "center",
         justifyContent: "center",
         margin: "auto",
@@ -21,4 +20,6 @@ export default function Loader() {
       <CircularProgress size="3.25rem" />
     </Box>
   );
-}
+};
+
+export default Loader;

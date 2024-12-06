@@ -3,22 +3,23 @@ import Typography from "@mui/material/Typography";
 import MuiLink from "@mui/material/Link";
 import { Box } from "@mui/material";
 
-export default function Copyright() {
+const Copyright = () => {
   return (
     <Box>
       <Typography
         variant="body2"
         align="center"
         sx={{
-          color: "text.secondary",
+          color: "#000",
+          fontWeight: "bold",
         }}
       >
         {"Copyright © "}
-        <MuiLink color="inherit" href="https://mui.com/">
-          Portal Website
-        </MuiLink>{" "}
+        <MuiLink href="https://mui.com/">Portal Website</MuiLink>{" "}
         {new Date().getFullYear()}.
       </Typography>
     </Box>
   );
-}
+};
+
+export default Copyright;

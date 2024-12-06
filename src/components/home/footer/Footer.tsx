@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import Copyright from "./Copyright";
 
-export default function Footer() {
+const Footer = () => {
   return (
     <Box
       component="footer"
@@ -12,4 +12,6 @@ export default function Footer() {
       <Copyright />
     </Box>
   );
-}
+};
+
+export default Footer;

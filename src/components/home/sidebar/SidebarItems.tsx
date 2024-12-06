@@ -1,4 +1,3 @@
-import { Menu } from "@/routes/Menu";
 import {
   Box,
   Collapse,
@@ -7,13 +6,16 @@ import {
   ListItemText,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { HomeRoute } from "@/routes/HomeRoute";
+import { useApi } from "@/hooks/useApi";
 
 export default function SidebarItems() {
   const router = useRouter();
   const [openMenu, setOpenMenu] = useState<{ [key: string]: boolean }>({});
 
+  // toggle menu
   const toggleMenu = (label: string) => {
     setOpenMenu((prev) => ({
       ...prev,
@@ -27,7 +29,7 @@ export default function SidebarItems() {
 
   return (
     <Box>
-      {Menu.filter((item) => item.visible).map((item, index) => (
+      {HomeRoute.filter((item) => item.visible).map((item, index) => (
         <React.Fragment key={index}>
           <ListItemButton
             onClick={() => {

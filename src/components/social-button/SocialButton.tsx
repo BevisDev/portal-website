@@ -6,7 +6,6 @@ import GithubIcon from "./icons/GithubIcon";
 export default function SocialButton() {
   return (
     <Box
-      gap={2}
       sx={{
         display: "flex",
         justifyContent: "center",
@@ -17,27 +16,30 @@ export default function SocialButton() {
       <Button
         sx={{
           bgcolor: "#1877F2",
-          borderRadius: "50px",
-        }}>
+          borderRadius: "1.5rem",
+          borderWidth: "1px",
+        }}
+      >
         <FacebookIcon />
       </Button>
 
       <Button
         sx={{
-          bgcolor: "#fff",
-          borderRadius: "50px",
-        }}>
+          borderRadius: "1.5rem",
+          border: "1px solid #eee",
+        }}
+      >
         <GoogleIcon />
       </Button>
 
       <Button
         sx={{
-          bgcolor: "#fff",
-          borderRadius: "50px",
-        }}>
+          borderRadius: "1.5rem",
+          border: "1px solid #eee",
+        }}
+      >
         <GithubIcon />
       </Button>
-
     </Box>
   );
 }

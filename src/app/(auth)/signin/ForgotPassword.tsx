@@ -6,6 +6,17 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
+import { TransitionProps } from "@mui/material/transitions";
+import { Slide } from "@mui/material";
+
+const transitionComponent = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement<any, any>;
+  },
+  ref: React.Ref<unknown>
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 interface ForgotPasswordProps {
   open: boolean;
@@ -20,6 +31,8 @@ export default function ForgotPassword({
     <Dialog
       open={open}
       onClose={handleClose}
+      TransitionComponent={transitionComponent}
+      keepMounted
       PaperProps={{
         component: "form",
         onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
@@ -31,6 +44,8 @@ export default function ForgotPassword({
           handleClose();
         },
       }}
+      fullWidth
+      maxWidth="sm"
     >
       <DialogTitle>Reset password</DialogTitle>
       <DialogContent
