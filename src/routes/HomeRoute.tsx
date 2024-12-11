@@ -1,4 +1,9 @@
-import { Dashboard, PeopleAltRounded, ShoppingCart } from "@mui/icons-material";
+import {
+  Dashboard,
+  PeopleAltRounded,
+  ShoppingCart,
+  CalendarMonthOutlined,
+} from "@mui/icons-material";
 import React from "react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
@@ -22,6 +27,7 @@ const HomeRoute: HomeRouteProps[] = [
         src={"/images/logo/dark-logo.svg"}
         width={200}
         height={100}
+        priority={false}
       />
     ),
   },
@@ -49,6 +55,12 @@ const HomeRoute: HomeRouteProps[] = [
         icon: <PeopleAltRounded />,
       },
     ],
+  },
+  {
+    path: "/calendar",
+    visible: true,
+    label: "Calendar",
+    icon: <CalendarMonthOutlined />,
   },
   {
     path: "/orders",
