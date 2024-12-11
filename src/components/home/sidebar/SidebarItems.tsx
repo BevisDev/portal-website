@@ -6,10 +6,9 @@ import {
   ListItemText,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { HomeRoute } from "@/routes/HomeRoute";
-import { useApi } from "@/hooks/useApi";
 
 export default function SidebarItems() {
   const router = useRouter();
