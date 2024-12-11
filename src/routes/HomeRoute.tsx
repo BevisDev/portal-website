@@ -1,4 +1,9 @@
-import { Dashboard, PeopleAltRounded, ShoppingCart } from "@mui/icons-material";
+import {
+  Dashboard,
+  PeopleAltRounded,
+  ShoppingCart,
+  ViewWeekOutlined,
+} from "@mui/icons-material";
 import React from "react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
@@ -55,6 +60,12 @@ const HomeRoute: HomeRouteProps[] = [
     visible: true,
     label: "Orders",
     icon: <ShoppingCart />,
+  },
+  {
+    path: "/board",
+    visible: true,
+    label: "Board",
+    icon: <ViewWeekOutlined />,
   },
   {
     path: "/page-management",
