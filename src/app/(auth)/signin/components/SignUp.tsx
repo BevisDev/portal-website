@@ -31,7 +31,7 @@ const transitionComponent = forwardRef(function Transition(
   },
   ref: React.Ref<unknown>
 ) {
-  return <Slide direction="down" ref={ref} {...props} />;
+  return <Slide direction="down" ref={ref} {...props} timeout={500} />;
 });
 
 const validationSchema = Yup.object({
@@ -334,6 +334,28 @@ const SignUp: React.FC<SignUpProps> = ({ open, handleClose }) => {
           />
         </FormControl>
 
+        {/* Phone Number */}
+        <FormControl fullWidth>
+          <TextField
+            fullWidth
+            label="Phone Number"
+            variant="outlined"
+            name="phoneNumber"
+            value={formik.values.phoneNumber}
+            error={
+              formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
+            }
+            helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                borderRadius: "12px",
+              },
+            }}
+          />
+        </FormControl>
+        
         {/* Password */}
         <FormControl fullWidth>
           <TextField
@@ -371,28 +393,6 @@ const SignUp: React.FC<SignUpProps> = ({ open, handleClose }) => {
             helperText={
               formik.touched.confirmPassword && formik.errors.confirmPassword
             }
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                borderRadius: "12px",
-              },
-            }}
-          />
-        </FormControl>
-
-        {/* Phone Number */}
-        <FormControl fullWidth>
-          <TextField
-            fullWidth
-            label="Phone Number"
-            variant="outlined"
-            name="phoneNumber"
-            value={formik.values.phoneNumber}
-            error={
-              formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)
-            }
-            helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             sx={{

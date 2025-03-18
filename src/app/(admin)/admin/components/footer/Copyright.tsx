@@ -1,7 +1,6 @@
 import * as React from "react";
 import Typography from "@mui/material/Typography";
-import MuiLink from "@mui/material/Link";
-import { Box } from "@mui/material";
+import { Box, Link } from "@mui/material";
 
 const Copyright = () => {
   return (
@@ -11,11 +10,11 @@ const Copyright = () => {
         align="center"
         sx={{
           color: "#000",
-          fontWeight: "bold",
+          fontWeight: "600",
         }}
       >
         {"Copyright © "}
-        <MuiLink href="https://mui.com/">Portal Website</MuiLink>{" "}
+        <Link href={process.env.NEXT_PUBLIC_GITHUB_LINK}>BevisDev</Link>{" "}
         {new Date().getFullYear()}.
       </Typography>
     </Box>

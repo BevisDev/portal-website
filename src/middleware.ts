@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const cookies = request.cookies;
   const url = request.nextUrl.clone();
 
   // ignore static assets
@@ -18,7 +17,7 @@ export function middleware(request: NextRequest) {
   // Enter "/" or "/abc.."
   // if no auth Token => redirect /signin
   // middlewares will check again route redirect /signin
-  const authToken = cookies.get("authToken");
+  const authToken = request.cookies.get("authToken")?.value;
   if (authToken && url.pathname.startsWith("/signin")) {
     url.pathname = "/";
     return NextResponse.redirect(url);

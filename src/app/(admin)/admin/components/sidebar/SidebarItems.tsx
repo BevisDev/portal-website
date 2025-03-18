@@ -8,7 +8,8 @@ import {
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { HomeRoute } from "@/routes/HomeRoute";
+import { HomeRoute } from "@/app/(admin)/admin/components/data/HomeRoute";
+import Image from "next/image";
 
 export default function SidebarItems() {
   const router = useRouter();
@@ -28,9 +29,30 @@ export default function SidebarItems() {
 
   return (
     <Box>
+      {/* Logo */}
+      <ListItemButton
+        onClick={() => handleNavigation("/test")}
+        sx={{
+          padding: "10px",
+          margin: "12px 0",
+        }}
+      >
+        <ListItemIcon>
+          <Image
+            alt="logo"
+            src={"/images/logo/dark-logo.svg"}
+            width={180}
+            height={100}
+          />
+        </ListItemIcon>
+      </ListItemButton>
+
       {HomeRoute.filter((item) => item.visible).map((item, index) => (
         <React.Fragment key={index}>
           <ListItemButton
+            sx={{
+              marginBottom: "5px",
+            }}
             onClick={() => {
               item.path ? handleNavigation(item.path) : toggleMenu(item.label);
             }}

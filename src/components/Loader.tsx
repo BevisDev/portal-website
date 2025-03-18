@@ -1,10 +1,4 @@
 import { Box, CircularProgress } from "@mui/material";
-import { Metadata } from "next";
-
-export const loadingMeta: Metadata = {
-  title: "Welcome to my Portal Website by BevisDev",
-  description: "Welcome to my Portal Website",
-};
 
 const Loader = () => {
   return (
@@ -13,11 +7,12 @@ const Loader = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        height: "100vh",
         margin: "auto",
-        backgroundColor: "rgba(255, 255, 255, 0.7)",
+        backgroundColor: "rgba(202, 201, 201, 0.7)",
       }}
     >
-      <CircularProgress size="3.25rem" />
+      <CircularProgress size="3.5rem" />
     </Box>
   );
 };

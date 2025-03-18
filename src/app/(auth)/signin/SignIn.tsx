@@ -14,13 +14,13 @@ import {
   Button,
 } from "@mui/material";
 import SocialButton from "@/components/social-button/SocialButton";
-import ForgotPassword from "@/app/(auth)/signin/ForgotPassword";
+import ForgotPassword from "@/app/(auth)/signin/components/ForgotPassword";
 import { useRouter } from "next/navigation";
-import SignUp from "./SignUp";
+import SignUp from "./components/SignUp";
 // import { useApi } from "@/hooks/useApi";
 
 const validationSchema = Yup.object({
-  username: Yup.string().required("Username is required"),
+  username: Yup.string().required("email or phone number is required"),
   password: Yup.string()
     .required("Password is required")
     .min(8, "Password should be of minimum 8 characters length"),

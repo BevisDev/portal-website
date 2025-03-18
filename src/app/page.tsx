@@ -1,19 +1,24 @@
-import HomeLayout from "@/components/home/HomeLayout";
-import { Box, TextField } from "@mui/material";
+"use client";
+import Loader from "@/components/Loader";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
-const Home = () => {
-  return (
-    <HomeLayout>
-      <Box
-        component="section"
-        style={{
-          height: "1600px",
-        }}
-      >
-        Home Page
-      </Box>
-    </HomeLayout>
-  );
-};
+export default function Home() {
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
-export default Home;
+  useEffect(() => {
+    router.prefetch("/admin");
+    const timeout = setTimeout(() => {
+      setLoading(false);
+      router.push("/admin");
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, [router]);
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  return null;
+}

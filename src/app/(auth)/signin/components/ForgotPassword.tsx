@@ -15,7 +15,7 @@ const transitionComponent = React.forwardRef(function Transition(
   },
   ref: React.Ref<unknown>
 ) {
-  return <Slide direction="up" ref={ref} {...props} />;
+  return <Slide direction="up" ref={ref} {...props} timeout={500} />;
 });
 
 interface ForgotPasswordProps {

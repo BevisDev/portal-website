@@ -1,4 +1,10 @@
-import { Dashboard, PeopleAltRounded, ShoppingCart } from "@mui/icons-material";
+import {
+  Dashboard,
+  PeopleAltRounded,
+  ShoppingCart,
+  SportsEsportsRounded,
+  CasinoRounded,
+} from "@mui/icons-material";
 import React from "react";
 import { Typography } from "@mui/material";
 import Image from "next/image";
@@ -13,23 +19,23 @@ interface HomeRouteProps {
 
 const HomeRoute: HomeRouteProps[] = [
   {
-    path: "/test",
-    visible: true,
-    label: "",
-    icon: (
-      <Image
-        alt="logo"
-        src={"/images/logo/dark-logo.svg"}
-        width={200}
-        height={100}
-      />
-    ),
-  },
-  {
     path: "/",
     visible: true,
     label: "Dashboard",
     icon: <Dashboard />,
+  },
+  {
+    label: "Game Play",
+    visible: true,
+    icon: <SportsEsportsRounded />,
+    children: [
+      {
+        path: "/baucua",
+        visible: true,
+        label: "Bầu Cua",
+        icon: <CasinoRounded />,
+      },
+    ],
   },
   {
     label: "Team",
@@ -57,7 +63,7 @@ const HomeRoute: HomeRouteProps[] = [
     icon: <ShoppingCart />,
   },
   {
-    path: "/page-management",
+    path: "/admin/page-management",
     visible: true,
     label: "Page Management",
     icon: <ShoppingCart />,
