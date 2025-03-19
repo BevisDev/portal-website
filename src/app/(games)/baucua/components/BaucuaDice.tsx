@@ -4,9 +4,8 @@ import "./style.css";
 import { useRef, useState } from "react";
 import { BaucuaData } from "./BaucuaData";
 import gsap from "gsap";
-import { Box, Button, Paper } from "@mui/material";
+import { Box, Button, Modal, Paper } from "@mui/material";
 import Image from "next/image";
-import CasinoIcon from "@mui/icons-material/Casino";
 
 const BaucuaDice = () => {
   const [isRolling, setIsRolling] = useState(false);
@@ -27,7 +26,9 @@ const BaucuaDice = () => {
     const animations: Promise<void>[] = [];
 
     diceRefs.forEach((ref, index) => {
-      if (!ref.current) return;
+      if (!ref.current) {
+        return;
+      }
 
       // random dice
       const randomIndex = Math.floor(Math.random() * len);
@@ -79,7 +80,7 @@ const BaucuaDice = () => {
 
   return (
     <Box className="flex flex-col items-center gap-8 pb-6">
-      <Box className="flex gap-6">
+      <Box className="flex gap-8">
         {diceRefs.map((diceRef, diceIndex) => (
           <Box key={diceIndex} className="cube" ref={diceRef}>
             {BaucuaData.map((item, index) => (

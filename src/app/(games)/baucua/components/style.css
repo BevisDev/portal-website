@@ -3,8 +3,8 @@
 }
 
 .cube {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   position: relative;
   transform-style: preserve-3d;
   transform: rotateX(-28deg) rotateY(-30deg) rotateZ(3deg);
@@ -12,10 +12,10 @@
 
 .face {
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   background: white;
-  border: 1.5px solid black;
+  border: 0.5px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,20 +25,20 @@
 
 /* Định vị 6 mặt xúc xắc */
 .front {
-  transform: rotateY(0deg) translateZ(25px);
+  transform: rotateY(0deg) translateZ(35px);
 }
 .back {
-  transform: rotateY(180deg) translateZ(25px);
+  transform: rotateY(180deg) translateZ(35px);
 }
 .left {
-  transform: rotateY(-90deg) translateZ(25px);
+  transform: rotateY(-90deg) translateZ(35px);
 }
 .right {
-  transform: rotateY(90deg) translateZ(25px);
+  transform: rotateY(90deg) translateZ(35px);
 }
 .top {
-  transform: rotateX(90deg) translateZ(25px);
+  transform: rotateX(90deg) translateZ(35px);
 }
 .bottom {
-  transform: rotateX(-90deg) translateZ(25px);
+  transform: rotateX(-90deg) translateZ(35px);
 }
