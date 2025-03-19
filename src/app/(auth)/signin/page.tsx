@@ -3,7 +3,7 @@ import { Box, Container } from "@mui/material";
 import { Metadata } from "next";
 import SignIn from "./SignIn";
 
-export const signInMeta: Metadata = {
+export const metadata: Metadata = {
   title: "Sign In | Portal Website by BevisDev",
   description: "Welcome to my Portal Website",
 };
@@ -11,6 +11,7 @@ export const signInMeta: Metadata = {
 const SignInPage = () => {
   return (
     <Box
+      component="section"
       sx={{
         backgroundImage: 'url("/images/backgrounds/bg-login.jpg")',
         backgroundSize: "cover",

@@ -4,6 +4,7 @@ import {
   ShoppingCart,
   SportsEsportsRounded,
   CasinoRounded,
+  ReceiptLongRounded,
 } from "@mui/icons-material";
 import React from "react";
 import { Typography } from "@mui/material";
@@ -57,10 +58,10 @@ const HomeRoute: HomeRouteProps[] = [
     ],
   },
   {
-    path: "/orders",
+    path: "/resume",
     visible: true,
-    label: "Orders",
-    icon: <ShoppingCart />,
+    label: "Resume",
+    icon: <ReceiptLongRounded />,
   },
   {
     path: "/admin/page-management",

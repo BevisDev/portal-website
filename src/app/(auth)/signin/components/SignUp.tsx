@@ -1,4 +1,5 @@
 "use client";
+
 import { months, rangeDay, rangeYear } from "@/utils/datetime-utils";
 import { phoneNumberRegex } from "@/utils/validate-utils";
 import {
@@ -355,7 +356,7 @@ const SignUp: React.FC<SignUpProps> = ({ open, handleClose }) => {
             }}
           />
         </FormControl>
-        
+
         {/* Password */}
         <FormControl fullWidth>
           <TextField

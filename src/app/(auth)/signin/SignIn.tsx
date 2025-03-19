@@ -14,9 +14,9 @@ import {
   Button,
 } from "@mui/material";
 import SocialButton from "@/components/social-button/SocialButton";
-import ForgotPassword from "@/app/(auth)/signin/components/ForgotPassword";
 import { useRouter } from "next/navigation";
 import SignUp from "./components/SignUp";
+import ForgotPassword from "./components/ForgotPassword";
 // import { useApi } from "@/hooks/useApi";
 
 const validationSchema = Yup.object({
@@ -37,6 +37,7 @@ const SignIn = () => {
   const formik = useFormik({
     initialValues: { username: "", password: "" },
     validationSchema: validationSchema,
+    validateOnChange: false,
     onSubmit: (values) => {
       console.log("Form values:", values);
       document.cookie = "authToken=sadasdas; path=/";
@@ -64,11 +65,12 @@ const SignIn = () => {
       }}
     >
       <Typography
-        variant="h2"
+        variant="h3"
         sx={{
           width: "100%",
           textAlign: "center",
           mb: 2,
+          fontWeight: "500",
           fontSize: "2.5rem",
         }}
       >
@@ -163,6 +165,7 @@ const SignIn = () => {
             <Link
               component="button"
               variant="body2"
+              type="button"
               onClick={() => toggleDialog(true)}
               sx={{
                 fontWeight: 500,
@@ -181,6 +184,7 @@ const SignIn = () => {
           <Box>
             <Link
               component="button"
+              type="button"
               variant="body2"
               onClick={() => toggleDialog(true, true)}
               sx={{

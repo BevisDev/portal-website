@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { toMilliseconds } from "@/utils/datetime-utils";

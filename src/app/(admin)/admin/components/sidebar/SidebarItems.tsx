@@ -8,8 +8,8 @@ import {
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { HomeRoute } from "@/app/(admin)/admin/components/data/HomeRoute";
 import Image from "next/image";
+import { HomeRoute } from "../data/HomeRoute";
 
 export default function SidebarItems() {
   const router = useRouter();

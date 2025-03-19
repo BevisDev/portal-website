@@ -8,7 +8,6 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.prefetch("/admin");
     const timeout = setTimeout(() => {
       setLoading(false);
       router.push("/admin");
