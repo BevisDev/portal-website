@@ -8,9 +8,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-
-const sidebarWidth = 250;
-const paperWidth = 16;
+import AppConfig from "@/config/index";
 
 type AdminLayoutProps = Readonly<{ children: React.ReactNode }>;
 const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
@@ -25,11 +23,12 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
         flexDirection: "column",
         justifyContent: "space-between",
         minHeight: "100vh",
+        backgroundColor: "#fdf1f5",
       }}
     >
       {/* <!-- ===== Start Sidebar ===== --> */}
       <Sidebar
-        sidebarWidth={sidebarWidth}
+        sidebarWidth={AppConfig.sidebarWidth}
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setIsSidebarOpen}
       />
@@ -37,12 +36,12 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
       <Paper
         elevation={3}
         style={{
-          margin: `${paperWidth}px`,
+          margin: `${AppConfig.marginPaper}px`,
           flex: 1,
           borderRadius: "12px",
           marginLeft: sidebarOpen
-            ? `${sidebarWidth + 15}px`
-            : `${paperWidth}px`,
+            ? `${AppConfig.sidebarWidth + AppConfig.marginPaper}px`
+            : `${AppConfig.marginPaper}px`,
           transition: "width 0.3s, margin-left 0.3s ease",
         }}
       >

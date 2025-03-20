@@ -23,19 +23,13 @@ const Search = () => {
       <IconButton color="inherit">
         <SearchIcon />
       </IconButton>
+
       <TextField
         value={keyword}
         onChange={handleSearch}
         variant="standard"
         placeholder="Search..."
         fullWidth
-        sx={{
-          backgroundColor: "#fff",
-          borderRadius: 1,
-          "& .MuiOutlinedInput-root": {
-            borderRadius: 1,
-          },
-        }}
       />
     </Box>
   );

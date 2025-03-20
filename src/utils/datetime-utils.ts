@@ -13,6 +13,9 @@ enum MonthEnum {
   December = "December",
 }
 
+// days of week
+const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
 // get list values month
 const months = Object.values(MonthEnum);
 
@@ -41,7 +44,7 @@ function toMilliseconds(
 }
 
 // export enum
-export { MonthEnum, months };
+export { MonthEnum, months, daysOfWeek };
 
 // export function
 export { rangeYear, rangeDay, toMilliseconds };

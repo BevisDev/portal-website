@@ -4,7 +4,7 @@ import "./style.css";
 import { useRef, useState } from "react";
 import { BaucuaData } from "./BaucuaData";
 import gsap from "gsap";
-import { Box, Button, Modal, Paper } from "@mui/material";
+import { Box, Button, Paper } from "@mui/material";
 import Image from "next/image";
 
 const BaucuaDice = () => {
@@ -91,7 +91,7 @@ const BaucuaDice = () => {
                   ["front", "back", "left", "right", "top", "bottom"][index]
                 }`}
               >
-                <Image src={item.src} alt={item.alt} width={50} height={50} />
+                <Image src={item.src} alt={item.alt} width={70} height={70} />
               </Paper>
             ))}
           </Box>
@@ -102,6 +102,12 @@ const BaucuaDice = () => {
         variant="contained"
         color="success"
         onClick={rollDice}
+        sx={{
+          height: 70,
+          width: 150,
+          borderRadius: 4,
+          fontSize: 20,
+        }}
         disabled={isRolling}
       >
         Roll 🎲

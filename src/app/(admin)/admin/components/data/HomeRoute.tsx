@@ -5,6 +5,7 @@ import {
   SportsEsportsRounded,
   CasinoRounded,
   ReceiptLongRounded,
+  CalendarMonthRounded,
 } from "@mui/icons-material";
 import React from "react";
 import { Typography } from "@mui/material";
@@ -37,6 +38,12 @@ const HomeRoute: HomeRouteProps[] = [
         icon: <CasinoRounded />,
       },
     ],
+  },
+  {
+    path: "/admin/calendar",
+    visible: true,
+    label: "Calendar",
+    icon: <CalendarMonthRounded />,
   },
   {
     label: "Team",
@@ -97,9 +104,10 @@ const TypographyLabel: React.FC<{ pathname: string }> = ({ pathname }) => {
     <Typography
       variant="h2"
       style={{
-        color: "#000",
+        color: "#222438",
         marginBottom: "2rem",
         fontSize: "28px",
+        fontWeight: "600",
       }}
     >
       {label}

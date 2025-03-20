@@ -1,6 +1,7 @@
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import { Box, Link } from "@mui/material";
+import AppConfig from "@/config/index";
 
 const Copyright = () => {
   return (
@@ -14,7 +15,7 @@ const Copyright = () => {
         }}
       >
         {"Copyright © "}
-        <Link href={process.env.NEXT_PUBLIC_GITHUB_LINK}>BevisDev</Link>{" "}
+        <Link href={AppConfig.social.github}>BevisDev</Link>{" "}
         {new Date().getFullYear()}.
       </Typography>
     </Box>

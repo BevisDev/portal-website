@@ -1,9 +1,13 @@
-"use client";
-
 import { Box, Paper, Typography } from "@mui/material";
 import Image from "next/image";
 import { BaucuaData } from "./components/BaucuaData";
 import BaucuaDice from "./components/BaucuaDice";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Bầu cua Game | Made by Bevis",
+  description: "Welcome to Bau Cua Page",
+};
 
 const BaucuaGame = () => {
   return (
@@ -18,7 +22,7 @@ const BaucuaGame = () => {
     >
       <Box
         sx={{
-          marginBottom: "25px",
+          marginBottom: "40px",
         }}
       >
         <Box
