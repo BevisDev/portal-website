@@ -3,9 +3,9 @@
 import { AppBar, Badge, Box, IconButton, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import React from "react";
 import Search from "./Search";
+import Notifications from "./Notifications";
 
 interface HeaderProps {
   sidebarOpen: boolean;
@@ -44,17 +44,8 @@ const Header: React.FC<HeaderProps> = ({ sidebarOpen, setSidebarOpen }) => {
 
           <Box sx={{ flexGrow: 1 }} />
 
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              aria-label="show 15 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={15} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-          </Box>
+          {/* Notification */}
+          <Notifications />
         </Toolbar>
       </AppBar>
     </Box>
