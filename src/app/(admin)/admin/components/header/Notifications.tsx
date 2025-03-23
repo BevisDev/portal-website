@@ -47,8 +47,8 @@ const Notifications = () => {
         }}
         sx={{
           "& .MuiPaper-root": {
-            backgroundColor: "#18181b",
-            color: "white",
+            backgroundColor: "#fff",
+            color: "#000",
             borderRadius: "8px",
             width: "300px",
           },
@@ -56,24 +56,22 @@ const Notifications = () => {
       >
         {/* Header */}
         <Box className="flex justify-between items-center px-4 py-3 border-b border-gray-600">
-          <Typography className="text-white font-semibold">
-            Notifications
-          </Typography>
-          <Typography className="text-gray-400 text-sm cursor-pointer hover:text-gray-200">
+          <Typography className="font-semibold">Notifications</Typography>
+          <Typography className="text-gray-500 text-sm cursor-pointer hover:text-gray-200">
             Mark all as read
           </Typography>
         </Box>
 
         {/* notifications empty */}
-        <Box className="flex flex-col items-center justify-center py-10 px-5">
+        <Box className="flex flex-col items-center justify-center py-10 px-5 gap-2">
           <Image
             src="/images/svg/commons/notification.svg"
             alt="No Notifications"
             width={96}
             height={96}
           />
-          <Typography className="text-gray-400 mt-2">
-            Thông báo của bạn sẽ xuất hiện ở đây.
+          <Typography className="text-gray-500">
+            Your notice will appear here.
           </Typography>
         </Box>
       </Popover>

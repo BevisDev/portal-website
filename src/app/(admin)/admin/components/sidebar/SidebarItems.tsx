@@ -30,19 +30,13 @@ export default function SidebarItems() {
   return (
     <Box>
       {/* Logo */}
-      <ListItemButton
-        onClick={() => handleNavigation("/test")}
-        sx={{
-          padding: "10px",
-          margin: "12px 0",
-        }}
-      >
+      <ListItemButton onClick={() => handleNavigation("/admin")}>
         <ListItemIcon>
           <Image
             alt="logo"
-            src={"/images/logo/dark-logo.svg"}
+            src={"/images/logo/cat-logo.png"}
             width={180}
-            height={100}
+            height={80}
           />
         </ListItemIcon>
       </ListItemButton>
