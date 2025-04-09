@@ -1,7 +1,7 @@
 "use client";
 
 import { daysOfWeek } from "@/utils/datetime-utils";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Paper, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import dayjs from "dayjs";
 import { useState } from "react";
@@ -33,23 +33,38 @@ const Calendar = () => {
   };
 
   return (
-    <Box sx={{ textAlign: "center", p: 2 }}>
+    <Paper
+      elevation={4}
+      sx={{
+        textAlign: "center",
+        p: 3,
+        maxWidth: 800,
+        margin: "40px auto",
+        borderRadius: 4,
+      }}
+    >
       {/* Header */}
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          alignContent: "center",
+          alignItems: "center",
+          mb: 3,
         }}
       >
         <Button
           onClick={handlePrevMonth}
           startIcon={<ArrowBackIcon />}
+          sx={{
+            color: "#555",
+            "&:hover": { backgroundColor: "#f0f0f0" },
+          }}
         ></Button>
         <Typography
           variant="h5"
           sx={{
             fontWeight: "500",
+            color: "#333",
           }}
         >
           {currentDate.format("MMMM YYYY")}
@@ -57,11 +72,15 @@ const Calendar = () => {
         <Button
           onClick={handleNextMonth}
           endIcon={<ArrowForwardIcon />}
+          sx={{
+            color: "#555",
+            "&:hover": { backgroundColor: "#f0f0f0" },
+          }}
         ></Button>
       </Box>
 
       {/* Days of the week */}
-      <Grid container columns={7} sx={{ mt: 1, backgroundColor: "#f5f5f5" }}>
+      <Grid container columns={7} sx={{ mb: 2 }}>
         {daysOfWeek.map((day) => (
           <Grid
             key={day}
@@ -70,24 +89,22 @@ const Calendar = () => {
               padding: 1,
               fontWeight: "bold",
               textAlign: "center",
-              borderBottom: "2px solid #000",
+              color: "#666",
             }}
           >
-            <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
-              {day}
-            </Typography>
+            <Typography variant="subtitle2">{day}</Typography>
           </Grid>
         ))}
       </Grid>
 
       {/* Calendar days */}
-      <Grid container columns={7} spacing={4}>
+      <Grid container columns={7} spacing={1}>
         {daysArray.map((day, index) => (
           <Grid
             size={{ xs: 1, sm: 1, md: 1 }}
             key={index}
             sx={{
-              height: 40,
+              height: 60,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -95,10 +112,25 @@ const Calendar = () => {
           >
             <Box
               sx={{
-                width: "40%",
-                borderRadius: 4,
+                width: "80%",
+                height: "80%",
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 backgroundColor:
-                  day === dayjs().date() ? "#f27228" : "transparent",
+                  day === dayjs().date() && currentDate.isSame(dayjs(), "month")
+                    ? "#5585e5"
+                    : "transparent",
+                color:
+                  day === dayjs().date() && currentDate.isSame(dayjs(), "month")
+                    ? "#fff"
+                    : "#333",
+                fontWeight: day === dayjs().date() ? "bold" : "normal",
+                cursor: day ? "pointer" : "default",
+                "&:hover": {
+                  backgroundColor: day ? "#e0e0e0" : "transparent",
+                },
               }}
             >
               {day}
@@ -106,7 +138,7 @@ const Calendar = () => {
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </Paper>
   );
 };
 

@@ -24,3 +24,13 @@ export const BaucuaData = [
     alt: "shrimp",
   },
 ];
+
+export const PlateUnder = {
+  src: "/images/games/baucua/plate.png",
+  alt: "plate-under",
+};
+
+export const PlateUpsideDown = {
+  src: "/images/games/baucua/plate-upsidedown.png",
+  alt: "plate-upsidedown",
+};
