@@ -4,7 +4,7 @@ import "./style.css";
 import { useRef, useState } from "react";
 import { BaucuaData, PlateUnder, PlateUpsideDown } from "./BaucuaData";
 import gsap from "gsap";
-import { Box, Button, Paper } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import Image from "next/image";
 
 const faceStyle = {
@@ -128,7 +128,7 @@ const BaucuaDice = () => {
               position: "absolute",
               top: 0,
               left: "50%",
-              transform: "translateX(-50%) rotateX(20deg) rotateY(20deg)",
+              transform: "translateX(-50%) rotateX(12deg) rotateY(10deg)",
               width: 80,
               height: 80,
               transformStyle: "preserve-3d",
@@ -167,7 +167,7 @@ const BaucuaDice = () => {
               position: "absolute",
               bottom: 5,
               left: "20%",
-              transform: "translateX(-50%) rotateX(20deg) rotateY(20deg)",
+              transform: "translateX(-50%) rotateX(12deg) rotateY(15deg)",
               width: 80,
               height: 80,
               transformStyle: "preserve-3d",
@@ -204,7 +204,7 @@ const BaucuaDice = () => {
               position: "absolute",
               bottom: 0,
               left: "80%",
-              transform: "translateX(-50%) rotateX(20deg) rotateY(20deg)",
+              transform: "translateX(-50%) rotateX(20deg) rotateY(8deg)",
               width: 80,
               height: 80,
               transformStyle: "preserve-3d",

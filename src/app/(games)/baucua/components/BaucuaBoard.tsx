@@ -1,14 +1,22 @@
 "use client";
-import { Box, Button, Paper } from "@mui/material";
+import {
+  Box,
+  Button,
+  Drawer,
+  IconButton,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { BaucuaData } from "./BaucuaData";
 import Image from "next/image";
 import BaucuaDice from "./BaucuaDice";
 import { useState } from "react";
 import BaucuaHistory from "./BaucuaHistory";
+import { CloseOutlined } from "@mui/icons-material";
 
-const BaucuaGame = () => {
-  const [historyOpen, setHistoryOpen] = useState(false);
+function BaucuaBoard() {
   const [history, setHistory] = useState<Array<typeof BaucuaData>>([]);
+  const [showHistory, setShowHistory] = useState(false);
 
   return (
     <Box
@@ -24,25 +32,36 @@ const BaucuaGame = () => {
         },
       }}
     >
-      {/* <Box className="absolute top-4 right-6 z-10">
-        <Button variant="contained" onClick={() => setHistoryOpen(true)}>
-          🕘 History
-        </Button>
-      </Box> */}
-
       {/* History */}
-      {/* <BaucuaHistory
-        historyOpen={historyOpen}
-        setHistoryOpen={setHistoryOpen}
+      <Button
+        type="button"
+        variant="outlined"
+        onClick={() => setShowHistory((prev) => !prev)}
+        sx={{
+          position: "fixed",
+          bottom: 20,
+          right: 100,
+          zIndex: 1301,
+          backgroundColor: "#e7e3e7",
+          color: "#1e1b1b",
+          borderRadius: "8px",
+          boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+        }}
+      >
+        {showHistory ? "Hide history ↓" : "View history ↑"}
+      </Button>
+
+      <BaucuaHistory
+        showHistory={showHistory}
+        setShowHistory={setShowHistory}
         history={history}
-      /> */}
+      />
 
       {/* Dice roll */}
       <BaucuaDice />
-      <Box className="m-4"></Box>
 
       {/* Game */}
-      <Box className="flex flex-col items-center justify-center gap-4">
+      <Box className="mt-4 flex flex-col items-center justify-center gap-4">
         <Box
           className="grid grid-cols-3 gap-4"
           sx={{
@@ -76,6 +95,6 @@ const BaucuaGame = () => {
       </Box>
     </Box>
   );
-};
+}
 
-export default BaucuaGame;
+export default BaucuaBoard;
