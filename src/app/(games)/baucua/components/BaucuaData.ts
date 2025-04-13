@@ -1,4 +1,9 @@
-export const BaucuaData = [
+export type BaucuaItem = {
+  src: string;
+  alt: string;
+};
+
+export const BaucuaData: BaucuaItem[] = [
   {
     src: "/images/games/baucua/deer.png",
     alt: "deer",
@@ -25,12 +30,12 @@ export const BaucuaData = [
   },
 ];
 
-export const PlateUnder = {
+export const PlateUnder: BaucuaItem = {
   src: "/images/games/baucua/plate.png",
   alt: "plate-under",
 };
 
-export const PlateUpsideDown = {
+export const PlateUpsideDown: BaucuaItem = {
   src: "/images/games/baucua/plate-upsidedown.png",
   alt: "plate-upsidedown",
 };

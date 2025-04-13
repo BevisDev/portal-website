@@ -1,281 +1,105 @@
 "use client";
-
-import "./style.css";
-import { useRef, useState } from "react";
-import { BaucuaData, PlateUnder, PlateUpsideDown } from "./BaucuaData";
-import gsap from "gsap";
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import Image from "next/image";
+import { BaucuaData, BaucuaItem } from "./BaucuaData";
+import { forwardRef, useImperativeHandle, useRef } from "react";
+import gsap from "gsap";
 
-const faceStyle = {
-  position: "absolute",
-  width: "80px",
-  height: "80px",
-  border: "2px solid #ffa726",
-  backgroundColor: "#fffdf9",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
+const faceOrder = ["front", "back", "top", "bottom", "left", "right"];
+
+const faceRotations = [
+  { x: 0, y: 0 },
+  { x: 180, y: 0 },
+  { x: 90, y: 0 },
+  { x: -90, y: 0 },
+  { x: 0, y: 90 },
+  { x: 0, y: -90 },
+];
+
+export type BaucuaDiceRef = {
+  roll: () => Promise<number>;
 };
 
-const BaucuaDice = () => {
-  const [isRolling, setIsRolling] = useState(false);
-  const [isCovered, setIsCovered] = useState(false);
-  const [diceFaces, setDiceFaces] = useState([
-    BaucuaData[0],
-    BaucuaData[0],
-    BaucuaData[0],
-  ]);
-  const diceRefs = [useRef(null), useRef(null), useRef(null)];
-  const bowlRef = useRef(null);
+type BaucuaDiceProps = {
+  item: BaucuaItem;
+  size?: number;
+};
 
-  const rollDice = async () => {
-    if (isRolling) return;
+const BaucuaDice = forwardRef<BaucuaDiceRef, BaucuaDiceProps>(
+  ({ size = 80 }, ref) => {
+    const diceRef = useRef<HTMLDivElement>(null);
+    useImperativeHandle(ref, () => ({
+      roll,
+    }));
 
-    setIsRolling(true);
-    setIsCovered(true);
-
-    const len = BaucuaData.length;
-    const newFaces = [...diceFaces];
-    const animations: Promise<void>[] = [];
-
-    diceRefs.forEach((ref, index) => {
-      if (!ref.current) return;
-
-      const randomIndex = Math.floor(Math.random() * len);
-      newFaces[index] = BaucuaData[randomIndex];
-
-      const faceRotations = [
-        { x: 0, y: 0 },
-        { x: 180, y: 0 },
-        { x: 90, y: 0 },
-        { x: -90, y: 0 },
-        { x: 0, y: 90 },
-        { x: 0, y: -90 },
-      ];
-      const { x, y } = faceRotations[randomIndex];
-
-      const animationPromise = new Promise<void>((resolve) => {
-        const tl = gsap.timeline({ onComplete: resolve });
-
-        for (let i = 0; i < 3; i++) {
-          tl.to(ref.current, {
-            rotateX: "+=720",
-            rotateY: "+=720",
-            duration: 0.8,
-            ease: "power2.inOut",
-          });
-        }
-
-        tl.to(ref.current, {
-          rotateX: 720 + x,
-          rotateY: 720 + y,
-          duration: 1,
+    // handle roll
+    const roll = (
+      idx: number = Math.floor(Math.random() * BaucuaData.length)
+    ): Promise<number> => {
+      return new Promise((resolve) => {
+        if (!diceRef.current) return resolve(0);
+        const tl = gsap.timeline({
+          onComplete: () => {
+            console.log("🎯 Mặt về:", idx);
+            resolve(idx);
+          },
+        });
+        tl.to(diceRef.current, {
+          rotateX: 720 + faceRotations[idx].x,
+          rotateY: 720 + faceRotations[idx].y,
+          duration: 1.2,
           ease: "power2.out",
         });
       });
+    };
 
-      animations.push(animationPromise);
-    });
-
-    await Promise.all(animations);
-    setDiceFaces([...newFaces]);
-    setTimeout(() => setIsRolling(false), 200); // Delay chút cho hiệu ứng mượt
-  };
-
-  const handleBowlClick = () => {
-    if (isRolling) return;
-
-    // Animate bowl mở ra
-    gsap.to(bowlRef.current, {
-      y: -200,
-      opacity: 0,
-      duration: 0.6,
-      ease: "power2.out",
-      onComplete: () => setIsCovered(false),
-    });
-  };
-
-  return (
-    <Box className="flex flex-col items-center">
-      <Box className="relative">
-        {/* Plate under*/}
-        <Box>
-          <Image
-            src={PlateUnder.src}
-            alt={PlateUnder.alt}
-            height={300}
-            width={450}
-            style={{ objectFit: "cover", zIndex: 0 }}
-          />
-        </Box>
-
-        {/* Dices up */}
+    return (
+      <Box
+        sx={{
+          perspective: 1000,
+          width: size,
+          height: size,
+        }}
+      >
         <Box
-          className="absolute top-[45%] left-1/2"
+          ref={diceRef}
           sx={{
-            transform: "translate(-50%, -50%)",
-            width: 200,
-            height: 200,
+            width: size,
+            height: size,
+            position: "relative",
+            transformStyle: "preserve-3d",
+            transform: "rotateX(-20deg) rotateY(20deg)",
+            transition: "transform 1s ease",
             zIndex: 1,
           }}
         >
-          <Box
-            ref={diceRefs[0]}
-            className="cube"
-            sx={{
-              position: "absolute",
-              top: 0,
-              left: "50%",
-              transform: "translateX(-50%) rotateX(12deg) rotateY(10deg)",
-              width: 80,
-              height: 80,
-              transformStyle: "preserve-3d",
-              transition: "transform 1s ease",
-            }}
-          >
-            {BaucuaData.map((item, j) => (
-              <Box
-                key={j}
-                className={`face ${
-                  ["front", "back", "left", "right", "top", "bottom"][j]
-                }`}
-                sx={{
-                  ...faceStyle,
+          {BaucuaData.map((item, j) => (
+            <Box
+              key={j}
+              className={`face ${faceOrder[j]}`}
+              sx={{
+                border: "2px solid #ffa726",
+                backgroundColor: "#fffdf9",
+                boxShadow: "0 4px 10px rgba(0,0,0,0.25)",
+              }}
+            >
+              <Image
+                src={item.src}
+                alt={item.alt}
+                fill
+                style={{
+                  objectFit: "cover",
+                  height: "100%",
+                  width: "100%",
                 }}
-              >
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  fill
-                  style={{
-                    objectFit: "cover",
-                    height: "100%",
-                    width: "100%",
-                  }}
-                />
-              </Box>
-            ))}
-          </Box>
-
-          {/* Dice left */}
-          <Box
-            ref={diceRefs[1]}
-            className="cube"
-            sx={{
-              position: "absolute",
-              bottom: 5,
-              left: "20%",
-              transform: "translateX(-50%) rotateX(12deg) rotateY(15deg)",
-              width: 80,
-              height: 80,
-              transformStyle: "preserve-3d",
-              transition: "transform 1s ease",
-            }}
-          >
-            {BaucuaData.map((item, j) => (
-              <Box
-                key={j}
-                className={`face ${
-                  ["front", "back", "left", "right", "top", "bottom"][j]
-                }`}
-                sx={faceStyle}
-              >
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  fill
-                  style={{
-                    objectFit: "cover",
-                    height: "100%",
-                    width: "100%",
-                  }}
-                />
-              </Box>
-            ))}
-          </Box>
-
-          {/* Dice right */}
-          <Box
-            ref={diceRefs[2]}
-            className="cube"
-            sx={{
-              position: "absolute",
-              bottom: 0,
-              left: "80%",
-              transform: "translateX(-50%) rotateX(20deg) rotateY(8deg)",
-              width: 80,
-              height: 80,
-              transformStyle: "preserve-3d",
-              transition: "transform 1s ease",
-            }}
-          >
-            {BaucuaData.map((item, j) => (
-              <Box
-                key={j}
-                className={`face ${
-                  ["front", "back", "left", "right", "top", "bottom"][j]
-                }`}
-                sx={faceStyle}
-              >
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  fill
-                  style={{
-                    objectFit: "cover",
-                    height: "100%",
-                    width: "100%",
-                  }}
-                />
-              </Box>
-            ))}
-          </Box>
+              />
+            </Box>
+          ))}
         </Box>
-
-        {/* Plate up side down */}
-        {isCovered && (
-          <Box
-            ref={bowlRef}
-            onClick={handleBowlClick}
-            className="absolute top-[47%] left-1/2"
-            sx={{
-              transform: "translate(-50%, -50%)",
-              height: 510,
-              width: 520,
-              cursor: "pointer",
-              zIndex: 2,
-              borderRadius: "50%",
-            }}
-          >
-            <Image
-              src={PlateUpsideDown.src}
-              alt={PlateUpsideDown.alt}
-              fill
-              style={{ objectFit: "cover", height: "100%", width: "100%" }}
-            />
-          </Box>
-        )}
       </Box>
+    );
+  }
+);
 
-      {/* Roll */}
-      <Button
-        variant="contained"
-        color="success"
-        onClick={rollDice}
-        disabled={isRolling}
-        sx={{
-          height: 60,
-          width: 140,
-          borderRadius: 3,
-          fontSize: 18,
-        }}
-      >
-        Roll 🎲
-      </Button>
-    </Box>
-  );
-};
-
+BaucuaDice.displayName = "BaucuaDice";
 export default BaucuaDice;

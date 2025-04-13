@@ -1,12 +1,12 @@
 import { Box, Drawer, IconButton, Typography } from "@mui/material";
 import Image from "next/image";
-import { BaucuaData } from "./BaucuaData";
+import { BaucuaData, BaucuaItem } from "./BaucuaData";
 import { CloseOutlined } from "@mui/icons-material";
 
 type BaucuaHistoryProps = {
   showHistory: boolean;
   setShowHistory: (open: boolean) => void;
-  history: Array<typeof BaucuaData>;
+  history: BaucuaItem[][];
 };
 
 const BaucuaHistory = ({
@@ -19,6 +19,7 @@ const BaucuaHistory = ({
     frequencyMap[item.alt] = 0;
   });
 
+  // set into frequencyMap
   history.flat().forEach((item) => {
     frequencyMap[item.alt]++;
   });
@@ -48,14 +49,14 @@ const BaucuaHistory = ({
           disableScrollLock: true,
         }}
       >
-        <Box p={2} height="100%" overflow="auto">
+        <Box p={2} height="100%" overflow="hidden">
           <Box
             display="flex"
             justifyContent="space-between"
             alignItems="center"
             mb={1}
           >
-            <Typography fontWeight="bold">🔮 History & Prediction</Typography>
+            <Typography fontWeight={600}>🔮 Soi cầu</Typography>
             <IconButton onClick={() => setShowHistory(false)} size="small">
               <CloseOutlined fontSize="small" />
             </IconButton>
@@ -64,7 +65,7 @@ const BaucuaHistory = ({
           <Box className="mb-3">
             {/* Frequency Section */}
             <Typography fontSize={14} fontWeight="medium" mt={2} mb={1}>
-              Frequency
+              Số lần xuất hiện
             </Typography>
             <Box className="grid grid-cols-3 gap-2 mb-2">
               {BaucuaData.map((item, idx) => (
@@ -87,15 +88,15 @@ const BaucuaHistory = ({
               No history yet.
             </Typography>
           ) : (
-            history.map((round, i) => (
-              <Box key={i} className="flex gap-1 justify-center py-1">
-                {round.map((item, j) => (
+            history.map((result, i) => (
+              <Box key={i} className="flex justify-center gap-2 py-1">
+                {result.map((item, j) => (
                   <Image
                     key={j}
                     src={item.src}
                     alt={item.alt}
-                    width={24}
-                    height={24}
+                    width={45}
+                    height={45}
                   />
                 ))}
               </Box>

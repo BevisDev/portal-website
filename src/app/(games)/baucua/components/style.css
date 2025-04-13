@@ -1,18 +1,27 @@
-.cube .face.front {
+.face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.face.front {
   transform: translateZ(40px);
 }
-.cube .face.back {
+.face.back {
   transform: rotateY(180deg) translateZ(40px);
 }
-.cube .face.left {
-  transform: rotateY(-90deg) translateZ(40px);
-}
-.cube .face.right {
-  transform: rotateY(90deg) translateZ(40px);
-}
-.cube .face.top {
+.face.top {
   transform: rotateX(90deg) translateZ(40px);
 }
-.cube .face.bottom {
+.face.bottom {
   transform: rotateX(-90deg) translateZ(40px);
+}
+.face.left {
+  transform: rotateY(-90deg) translateZ(40px);
+}
+.face.right {
+  transform: rotateY(90deg) translateZ(40px);
 }

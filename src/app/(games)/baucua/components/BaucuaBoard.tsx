@@ -1,21 +1,14 @@
 "use client";
-import {
-  Box,
-  Button,
-  Drawer,
-  IconButton,
-  Paper,
-  Typography,
-} from "@mui/material";
-import { BaucuaData } from "./BaucuaData";
+import { Box, Button, Paper } from "@mui/material";
+import { BaucuaData, BaucuaItem } from "./BaucuaData";
 import Image from "next/image";
-import BaucuaDice from "./BaucuaDice";
+import BaucuaDice from "./BaucuaDiceList";
 import { useState } from "react";
 import BaucuaHistory from "./BaucuaHistory";
-import { CloseOutlined } from "@mui/icons-material";
+import BaucuaDiceList from "./BaucuaDiceList";
 
 function BaucuaBoard() {
-  const [history, setHistory] = useState<Array<typeof BaucuaData>>([]);
+  const [history, setHistory] = useState<BaucuaItem[][]>([]);
   const [showHistory, setShowHistory] = useState(false);
 
   return (
@@ -48,7 +41,7 @@ function BaucuaBoard() {
           boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
         }}
       >
-        {showHistory ? "Hide history ↓" : "View history ↑"}
+        {showHistory ? "Đóng tab ↓" : "Soi cầu ↑"}
       </Button>
 
       <BaucuaHistory
@@ -58,9 +51,11 @@ function BaucuaBoard() {
       />
 
       {/* Dice roll */}
-      <BaucuaDice />
+      <BaucuaDiceList
+        saveRecentPlays={(faces) => setHistory((prev) => [faces, ...prev])}
+      />
 
-      {/* Game */}
+      {/* Board */}
       <Box className="mt-4 flex flex-col items-center justify-center gap-4">
         <Box
           className="grid grid-cols-3 gap-4"
@@ -73,8 +68,8 @@ function BaucuaBoard() {
               key={index}
               elevation={3}
               sx={{
-                width: 200,
-                height: 180,
+                width: 175,
+                height: 140,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -85,8 +80,8 @@ function BaucuaBoard() {
               <Image
                 src={v.src}
                 alt={v.alt}
-                width={230}
-                height={200}
+                width={175}
+                height={140}
                 style={{ objectFit: "cover", height: "100%" }}
               />
             </Paper>
