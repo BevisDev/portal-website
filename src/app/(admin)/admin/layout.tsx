@@ -38,7 +38,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
         style={{
           margin: `${AppConfig.marginPaper}px`,
           flex: 1,
-          borderRadius: "12px",
+          borderRadius: "8px",
           marginLeft: sidebarOpen
             ? `${AppConfig.sidebarWidth + AppConfig.marginPaper}px`
             : `${AppConfig.marginPaper}px`,

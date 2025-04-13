@@ -27,7 +27,7 @@ export default function Sidebar({
   sidebarOpen,
   setSidebarOpen,
 }: SidebarProps) {
-  const drawerRef = useRef<HTMLDivElement | null>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   // handle togger drawer
   const toggleDrawer = useCallback(
@@ -70,6 +70,9 @@ export default function Sidebar({
           "& .MuiDrawer-paper": {
             width: sidebarWidth,
             padding: "1rem",
+            borderTopRightRadius: "10px",
+            borderBottomRightRadius: "10px",
+            boxShadow: "2px 0 10px rgba(0,0,0,0.1)",
           },
         }}
         ref={drawerRef}
