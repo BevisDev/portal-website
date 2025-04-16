@@ -7,6 +7,24 @@
   position: absolute;
 }
 
+.cube-top {
+  top: -5px;
+  left: 10%;
+  transform: rotateX(12deg) rotateY(5deg);
+}
+
+.cube-left {
+  bottom: -35px;
+  right: 70%;
+  transform: rotateX(12deg) rotateY(4deg);
+}
+
+.cube-right {
+  top: -35px;
+  left: 80%;
+  transform: rotateX(10deg) rotateY(6deg);
+}
+
 .face.front {
   transform: translateZ(40px);
 }

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import BaucuaBoard from "./components/BaucuaBoard";
+import BaucuaBoard from "./components/Board";
 
 export const metadata: Metadata = {
   title: "Bầu cua Game | Made by Bevis",

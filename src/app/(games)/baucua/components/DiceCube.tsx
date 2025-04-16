@@ -1,7 +1,7 @@
 "use client";
 import { Box } from "@mui/material";
 import Image from "next/image";
-import { BaucuaData, BaucuaItem } from "./BaucuaData";
+import { Data, Item } from "./data";
 import { forwardRef, useImperativeHandle, useRef } from "react";
 import gsap from "gsap";
 
@@ -16,17 +16,18 @@ const faceRotations = [
   { x: 0, y: -90 },
 ];
 
-export type BaucuaDiceRef = {
+export type DiceCubeRef = {
   roll: () => Promise<number>;
 };
 
-type BaucuaDiceProps = {
-  item: BaucuaItem;
+type DiceCubeProps = {
+  item: Item;
   size?: number;
+  className?: string;
 };
 
-const BaucuaDice = forwardRef<BaucuaDiceRef, BaucuaDiceProps>(
-  ({ size = 80 }, ref) => {
+const DiceCube = forwardRef<DiceCubeRef, DiceCubeProps>(
+  ({ size = 80, className }, ref) => {
     const diceRef = useRef<HTMLDivElement>(null);
     useImperativeHandle(ref, () => ({
       roll,
@@ -34,20 +35,32 @@ const BaucuaDice = forwardRef<BaucuaDiceRef, BaucuaDiceProps>(
 
     // handle roll
     const roll = (
-      idx: number = Math.floor(Math.random() * BaucuaData.length)
+      idx: number = Math.floor(Math.random() * Data.length)
     ): Promise<number> => {
       return new Promise((resolve) => {
+        console.log("Rolling dice... ", idx);
         if (!diceRef.current) return resolve(0);
+        const { x, y } = faceRotations[idx];
+
         const tl = gsap.timeline({
           onComplete: () => {
-            console.log("🎯 Mặt về:", idx);
             resolve(idx);
           },
         });
+
+        for (let i = 0; i < 3; i++) {
+          tl.to(diceRef.current, {
+            rotateX: "+=720",
+            rotateY: "+=720",
+            duration: 0.8,
+            ease: "power2.inOut",
+          });
+        }
+
         tl.to(diceRef.current, {
-          rotateX: 720 + faceRotations[idx].x,
-          rotateY: 720 + faceRotations[idx].y,
-          duration: 1.2,
+          rotateX: 720 + x,
+          rotateY: 720 + y,
+          duration: 1,
           ease: "power2.out",
         });
       });
@@ -63,17 +76,15 @@ const BaucuaDice = forwardRef<BaucuaDiceRef, BaucuaDiceProps>(
       >
         <Box
           ref={diceRef}
+          className={className}
           sx={{
             width: size,
             height: size,
-            position: "relative",
+            position: "absolute",
             transformStyle: "preserve-3d",
-            transform: "rotateX(-20deg) rotateY(20deg)",
-            transition: "transform 1s ease",
-            zIndex: 1,
           }}
         >
-          {BaucuaData.map((item, j) => (
+          {Data.map((item, j) => (
             <Box
               key={j}
               className={`face ${faceOrder[j]}`}
@@ -101,5 +112,5 @@ const BaucuaDice = forwardRef<BaucuaDiceRef, BaucuaDiceProps>(
   }
 );
 
-BaucuaDice.displayName = "BaucuaDice";
-export default BaucuaDice;
+DiceCube.displayName = "BaucuaDice";
+export default DiceCube;

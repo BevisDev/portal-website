@@ -1,14 +1,13 @@
 "use client";
 import { Box, Button, Paper } from "@mui/material";
-import { BaucuaData, BaucuaItem } from "./BaucuaData";
+import { Data, Item } from "./data";
 import Image from "next/image";
-import BaucuaDice from "./BaucuaDiceList";
 import { useState } from "react";
-import BaucuaHistory from "./BaucuaHistory";
-import BaucuaDiceList from "./BaucuaDiceList";
+import History from "./History";
+import DiceList from "./DiceList";
 
-function BaucuaBoard() {
-  const [history, setHistory] = useState<BaucuaItem[][]>([]);
+function Board() {
+  const [history, setHistory] = useState<Item[][]>([]);
   const [showHistory, setShowHistory] = useState(false);
 
   return (
@@ -44,14 +43,14 @@ function BaucuaBoard() {
         {showHistory ? "Đóng tab ↓" : "Soi cầu ↑"}
       </Button>
 
-      <BaucuaHistory
+      <History
         showHistory={showHistory}
         setShowHistory={setShowHistory}
         history={history}
       />
 
       {/* Dice roll */}
-      <BaucuaDiceList
+      <DiceList
         saveRecentPlays={(faces) => setHistory((prev) => [faces, ...prev])}
       />
 
@@ -63,24 +62,20 @@ function BaucuaBoard() {
             maxWidth: "800px",
           }}
         >
-          {BaucuaData.map((v, index) => (
+          {Data.map((v, index) => (
             <Paper
               key={index}
               elevation={3}
               sx={{
-                width: 175,
+                width: 150,
                 height: 140,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#fefefe",
-                borderRadius: "16px",
+                borderRadius: "10px",
               }}
             >
               <Image
                 src={v.src}
                 alt={v.alt}
-                width={175}
+                width={150}
                 height={140}
                 style={{ objectFit: "cover", height: "100%" }}
               />
@@ -92,4 +87,4 @@ function BaucuaBoard() {
   );
 }
 
-export default BaucuaBoard;
+export default Board;

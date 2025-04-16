@@ -1,21 +1,17 @@
 import { Box, Drawer, IconButton, Typography } from "@mui/material";
 import Image from "next/image";
-import { BaucuaData, BaucuaItem } from "./BaucuaData";
+import { Data, Item } from "./data";
 import { CloseOutlined } from "@mui/icons-material";
 
-type BaucuaHistoryProps = {
+type HistoryProps = {
   showHistory: boolean;
   setShowHistory: (open: boolean) => void;
-  history: BaucuaItem[][];
+  history: Item[][];
 };
 
-const BaucuaHistory = ({
-  showHistory,
-  setShowHistory,
-  history,
-}: BaucuaHistoryProps) => {
+const History = ({ showHistory, setShowHistory, history }: HistoryProps) => {
   const frequencyMap: Record<string, number> = {};
-  BaucuaData.forEach((item) => {
+  Data.forEach((item) => {
     frequencyMap[item.alt] = 0;
   });
 
@@ -33,12 +29,12 @@ const BaucuaHistory = ({
         hideBackdrop
         PaperProps={{
           sx: {
+            paddingBottom: 3,
             width: 280,
-            height: 400,
-            position: "absolute",
+            height: 600,
             bottom: 80,
             top: "auto",
-            right: 92,
+            right: 40,
             borderRadius: "1rem",
             backgroundColor: "#dedddd",
             boxShadow: "0px 4px 20px rgba(0,0,0,0.1)",
@@ -68,7 +64,7 @@ const BaucuaHistory = ({
               Số lần xuất hiện
             </Typography>
             <Box className="grid grid-cols-3 gap-2 mb-2">
-              {BaucuaData.map((item, idx) => (
+              {Data.map((item, idx) => (
                 <Box
                   key={idx}
                   className="flex items-center justify-center gap-2"
@@ -108,4 +104,4 @@ const BaucuaHistory = ({
   );
 };
 
-export default BaucuaHistory;
+export default History;
