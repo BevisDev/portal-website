@@ -98,9 +98,9 @@ const DiceList = ({ saveRecentPlays }: DiceListProps) => {
             zIndex: 1,
           }}
         >
-          <DiceCube item={Data[0]} ref={diceRefs[0]} className="cube-top" />
-          <DiceCube item={Data[0]} ref={diceRefs[1]} className="cube-left" />
-          <DiceCube item={Data[0]} ref={diceRefs[2]} className="cube-right" />
+          <DiceCube item={Data[0]} ref={diceRefs[0]} className="cube-top"/>
+          <DiceCube item={Data[0]} ref={diceRefs[1]} className="cube-left"/>
+          <DiceCube item={Data[0]} ref={diceRefs[2]} className="cube-right"/>
         </Box>
       </Box>
 

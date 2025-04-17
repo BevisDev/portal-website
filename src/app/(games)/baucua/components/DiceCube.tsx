@@ -9,9 +9,9 @@ const faceOrder = ["front", "back", "top", "bottom", "left", "right"];
 
 const faceRotations = [
   { x: 0, y: 0 },
-  { x: 180, y: 0 },
-  { x: 90, y: 0 },
+  { x: 0, y: 180 },
   { x: -90, y: 0 },
+  { x: 90, y: 0 },
   { x: 0, y: 90 },
   { x: 0, y: -90 },
 ];
@@ -38,7 +38,6 @@ const DiceCube = forwardRef<DiceCubeRef, DiceCubeProps>(
       idx: number = Math.floor(Math.random() * Data.length)
     ): Promise<number> => {
       return new Promise((resolve) => {
-        console.log("Rolling dice... ", idx);
         if (!diceRef.current) return resolve(0);
         const { x, y } = faceRotations[idx];
 
