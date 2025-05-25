@@ -21,13 +21,50 @@ const DiceList = ({ saveRecentPlays }: DiceListProps) => {
     Data[0],
   ]);
   const diceRefs = [useRef<DiceCubeRef>(null), useRef(null), useRef(null)];
-  const bowlRef = useRef(null);
+  const bowlRef = useRef<HTMLDivElement>(null);
+  const boxRef = useRef<HTMLDivElement>(null);
 
   const rollDice = async () => {
     if (isRolling) return;
 
     setIsRolling(true);
     setIsCovered(true);
+
+    const tl = gsap.timeline();
+
+    tl.to(boxRef.current, {
+      keyframes: [
+        { x: 6, y: 0, rotateZ: 4 },
+        { x: 4, y: 4, rotateZ: -4 },
+        { x: 0, y: 6, rotateZ: 4 },
+        { x: -4, y: 4, rotateZ: -4 },
+        { x: -6, y: 0, rotateZ: 4 },
+        { x: -4, y: -4, rotateZ: -4 },
+        { x: 0, y: -6, rotateZ: 4 },
+        { x: 4, y: -4, rotateZ: -4 },
+        { x: 6, y: 0, rotateZ: 0 },
+      ],
+      duration: 0.6,
+      repeat: 2,
+      ease: "power1.inOut",
+      transformOrigin: "center center",
+    });
+
+    tl.to(boxRef.current, {
+      rotateZ: 6,
+      duration: 0.1,
+      repeat: 3,
+      yoyo: true,
+      ease: "power1.inOut",
+    });
+
+    tl.to(boxRef.current, {
+      x: 0,
+      y: 0,
+      rotateZ: 0,
+      duration: 0.2,
+      ease: "power2.out",
+    });
 
     const promises = diceRefs.map(
       (ref) => ref.current?.roll() ?? Promise.resolve(0)
@@ -44,20 +81,23 @@ const DiceList = ({ saveRecentPlays }: DiceListProps) => {
   const handleBowlClick = () => {
     if (isRolling) return;
 
-    // Animate bowl mở ra
-    gsap.to(bowlRef.current, {
-      y: -200,
-      opacity: 0,
-      duration: 0.6,
-      ease: "power2.out",
+    const tl = gsap.timeline({
       onComplete: () => setIsCovered(false),
+    });
+
+    tl.to(bowlRef.current, {
+      y: -10,
+      rotateZ: 3,
+      duration: 0.15,
+      yoyo: true,
+      repeat: 2,
+      ease: "power1.inOut",
     });
   };
 
   return (
     <Box className="flex flex-col items-center">
-      {/* Plate */}
-      <Box className="relative">
+      <Box className="relative" ref={boxRef}>
         {/* Plate under*/}
         <Image
           src={PlateUnder.src}
@@ -98,9 +138,9 @@ const DiceList = ({ saveRecentPlays }: DiceListProps) => {
             zIndex: 1,
           }}
         >
-          <DiceCube item={Data[0]} ref={diceRefs[0]} className="cube-top"/>
-          <DiceCube item={Data[0]} ref={diceRefs[1]} className="cube-left"/>
-          <DiceCube item={Data[0]} ref={diceRefs[2]} className="cube-right"/>
+          <DiceCube item={Data[0]} ref={diceRefs[0]} className="cube-top" />
+          <DiceCube item={Data[0]} ref={diceRefs[1]} className="cube-left" />
+          <DiceCube item={Data[0]} ref={diceRefs[2]} className="cube-right" />
         </Box>
       </Box>
 
@@ -115,6 +155,7 @@ const DiceList = ({ saveRecentPlays }: DiceListProps) => {
           width: 140,
           borderRadius: 3,
           fontSize: 18,
+          zIndex: 1500,
         }}
       >
         Lắc 🎲

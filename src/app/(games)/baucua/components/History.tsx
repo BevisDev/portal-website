@@ -43,6 +43,9 @@ const History = ({ showHistory, setShowHistory, history }: HistoryProps) => {
         ModalProps={{
           keepMounted: true,
           disableScrollLock: true,
+          sx: {
+            pointerEvents: showHistory ? "auto" : "none",
+          },
         }}
       >
         <Box p={2} height="100%" overflow="hidden">

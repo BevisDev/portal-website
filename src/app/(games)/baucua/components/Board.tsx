@@ -2,13 +2,14 @@
 import { Box, Button, Paper } from "@mui/material";
 import { Data, Item } from "./data";
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import History from "./History";
 import DiceList from "./DiceList";
 
 function Board() {
   const [history, setHistory] = useState<Item[][]>([]);
   const [showHistory, setShowHistory] = useState(false);
+  const bowl = useRef<HTMLDivElement>(null);
 
   return (
     <Box
