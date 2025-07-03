@@ -8,7 +8,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import AppConfig from "@/config/index";
+import AppConfig from "@/config/AppConfig";
 
 type AdminLayoutProps = Readonly<{ children: React.ReactNode }>;
 const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {

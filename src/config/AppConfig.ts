@@ -1,4 +1,5 @@
 const AppConfig = {
+  apiTimeout: Number(process.env.NEXT_PUBLIC_API_TIMEOUT) || 60,
   sidebarWidth: Number(process.env.NEXT_PUBLIC_SIDEBAR_WIDTH) || 250,
   marginPaper: Number(process.env.NEXT_PUBLIC_MARGIN_PAPER) || 800,
   phoneNumber: process.env.NEXT_PUBLIC_PHONE_NUMBER,

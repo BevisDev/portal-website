@@ -1,7 +1,7 @@
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import { Box, Link } from "@mui/material";
-import AppConfig from "@/config/index";
+import AppConfig from "@/config/AppConfig";
 
 const Copyright = () => {
   return (

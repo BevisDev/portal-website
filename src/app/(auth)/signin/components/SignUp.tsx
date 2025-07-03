@@ -1,7 +1,7 @@
 "use client";
 
-import { months, rangeDay, rangeYear } from "@/utils/datetime-utils";
-import { phoneNumberRegex } from "@/utils/validate-utils";
+import { months, rangeDay, rangeYear } from "commons/utils/datetime-utils";
+import { phoneNumberRegex } from "commons/utils/validate-utils";
 import {
   Box,
   Divider,

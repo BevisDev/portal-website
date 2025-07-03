@@ -27,6 +27,11 @@ const validationSchema = Yup.object({
 });
 
 const SignIn = () => {
+  //     const savedConfig = localStorage.getItem("signin-config");
+  // if (savedConfig) {
+  //   const signinConfigObj = JSON.parse(savedConfig);
+  //   timeout = toMilliseconds(signinConfigObj.timeoutSeconds, "seconds");
+  // }
   // const { data, error, isLoading } = useApi({
   //   url: "/signin-config",
   //   method: "GET",

@@ -1,7 +1,7 @@
 "use client";
 import { toast } from "react-toastify";
 
-export const useNotify = (
+const useNotify = (
   message: string,
   type: "success" | "error" | "info" | "warn" | "default" = "default",
   options = {}
@@ -24,3 +24,5 @@ export const useNotify = (
       break;
   }
 };
+
+export default useNotify;

@@ -1,6 +1,6 @@
 "use client";
 
-import { daysOfWeek } from "@/utils/datetime-utils";
+import { daysOfWeek } from "commons/utils/datetime-utils";
 import { Box, Button, Paper, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import dayjs from "dayjs";
